@@ -7,22 +7,31 @@ public class BiologyTest extends TestBuilder {
 
     @Override
     protected void define() {
-        test("Vzorový test, na ktorého úspešné prejdenie potrebuješ aspoň 51 percent bodov", 51,
-
-                otazka_s_volnou_odpovedou("Vzorová otázka s voľnou odpoveďou za 10 bodov?", 10,
-                        spravna_odpoved("odpoveď")
+        test("Test z Biológie", 51,
+                otazka_s_jednou_spravnou_odpovedou("Ako robí mačička?", 10, 
+                        nespravna_odpoved("hav"),
+                        nespravna_odpoved("múúú"),
+                        spravna_odpoved("miau"),
+                        nespravna_odpoved("bééé")
                 ),
-
-                otazka_s_jednou_spravnou_odpovedou("Vzorová otázka s jednou odpoveďou za 8 bodov?", 8,
-                        nespravna_odpoved("odpoveď 1"),
-                        nespravna_odpoved("odpoveď 2"),
-                        spravna_odpoved("odpoveď 3")
+                otazka_s_volnou_odpovedou("Aké zvieratko robí kváák?", 20,
+                        spravna_odpoved("žabka")
                 ),
-
-                otazka_na_hladanie_parov("Vzorová otázka na hľadanie dvojíc za 20 bodov", 20,
-                        dvojica("odpoveď 1", "odpoveď 1"),
-                        dvojica("odpoveď 2", "odpoveď 2"),
-                        dvojica("odpoveď 3", "odpoveď 3")
+                otazka_s_viacerymi_spravnymi_odpovedami("Ktoré zvieratká papkajú trávičku?", 14,
+                        nespravna_odpoved("levík"),
+                        nespravna_odpoved("medvedík"),
+                        spravna_odpoved("kravička"),
+                        spravna_odpoved("ovečka"),
+                        nespravna_odpoved("hyenka")
+                ),
+                otazka_na_hladanie_parov("Nájdi dievčatko od každého zvieratka:", 20,
+                        dvojica("lev", "levica"),
+                        dvojica("had", "hadica"),
+                        dvojica("krab", "krabica"),
+                        dvojica("medveď", "medvedica")
+                ),
+                otazka_s_volnou_odpovedou("Ako sa povie maličkej kravke?", 20, 
+                        spravna_odpoved("teliatko")
                 )
         );
     }
