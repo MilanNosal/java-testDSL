@@ -1,63 +1,19 @@
 package language.model;
 
-import java.util.LinkedList;
-import java.util.List;
+import language.builder.ErrorHandlingUtils;
+import language.builder.ParsingException;
 
 /**
  * Question type with several options and a single correct answer.
  * @author Milan
  */
-public class SingleOptionQuestion implements Question {
+public class SingleOptionQuestion extends Question {
     
     public static final String NAME = "single-option-question";
-    
-    private String text;
-    
-    private int points;
-    
-    private List<Answer> answers = new LinkedList<>();
 
     public SingleOptionQuestion(String text, int points) {
         this.text = text;
         this.points = points;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    @Override
-    public int getPoints() {
-        return points;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
-    }
-
-    public List<Answer> getAnswers() {
-        return answers;
-    }
-
-    public void setAnswers(List<Answer> answers) {
-        this.answers = answers;
-    }
-    
-    @Override
-    public void addAnswer(Answer answer) {
-        if (!answer.isCorrect()) {
-            this.answers.add(answer);
-        } else {
-            if (this.answers.stream().map((a) -> a.isCorrect()).reduce(false, (a, b) -> a || b)) {
-                throw new RuntimeException(NAME + " with text \'" + text + "\' cannot have multiple correct answers!");
-            } else {
-                this.answers.add(answer);
-            }
-        }
     }
 
     @Override
@@ -95,5 +51,39 @@ public class SingleOptionQuestion implements Question {
     @Override
     public String toString() {
         return "SingleOptionQuestion{" + "text=" + text + ", points=" + points + ", answers=" + answers + '}';
+    }
+
+    @Override
+    public boolean validate(ErrorHandlingUtils errorHandling) throws ParsingException {
+        boolean correct = true;
+        for (MatchingPair pair : pairs) {
+            errorHandling.reportError(pair, new ParsingException("Otázka '" + text + "' s jednou správnou odpoveďou nemôže mať v sebe definovaný pár '" + 
+                    pair.getLeft() + "' <-> '" + pair.getRight() + "'! Odstráň ho z definície, alebo zmeň typ otázky."));
+            correct = false;
+        }
+        
+        int numberOfCorrect = 0;
+        int numberOfIncorrect = 0;
+        for (Answer a : answers) {
+            if (a.isCorrect()) {
+                numberOfCorrect++;
+            } else {
+                numberOfIncorrect++;
+            }
+            if (a.isCorrect() && numberOfCorrect > 1) {
+                errorHandling.reportError(a, new ParsingException("Otázka '" + text + "' s jednou odpoveďou nemôže mať ďalšiu správnu odpoveď, odstráň odpoveď '" +
+                        a.getText() + "'."));
+                correct = false;
+            }
+        }
+        
+        if (numberOfCorrect == 0 || numberOfIncorrect == 0) {
+            errorHandling.reportError(this, new ParsingException("Otázka '" + text + "' musí mať aspoň jednu " 
+                    + (numberOfCorrect == 0 ? "správnu" : "nesprávnu") + " odpoveď! Dodaj ju prosím."));
+            correct = false;
+        }
+        
+        boolean superCorrect = super.validate(errorHandling);
+        return correct && superCorrect;
     }
 }

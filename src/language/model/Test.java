@@ -3,6 +3,8 @@ package language.model;
 import java.util.AbstractMap;
 import java.util.LinkedList;
 import java.util.List;
+import language.builder.ErrorHandlingUtils;
+import language.builder.ParsingException;
 
 /**
  * Models the whole test.
@@ -20,9 +22,6 @@ public class Test {
 
     public Test(String title, int percMinimum) {
         this.title = title;
-        if (percMinimum > 100 || percMinimum < 0) {
-            throw new RuntimeException(NAME + " " + title + " percMinimum parameter requires to be between 0-100 (it is a percentage), you provided " + percMinimum + "!");
-        }
         this.percMinimum = percMinimum;
     }
 
@@ -298,5 +297,40 @@ public class Test {
 "</html>";
     
         return retVal;
+    }
+    
+    public boolean validate(ErrorHandlingUtils errorHandling) throws ParsingException {
+        boolean correct = true;
+        if (percMinimum > 100 || percMinimum < 0) {
+            errorHandling.reportError(this, 
+                    new ParsingException("Parameter testu '" + title + "' potrebnePercentaBodov predstavuje minimálnu hranicu na úspešné absolvovanie testu "
+                            + "v percentách, tzn. že musí mať rozsah 0-100, ty si uviedol/dla " + percMinimum + "! Prosím, oprav to!"));
+            correct = false;
+        }
+        
+        List<String> usedQuestions = new LinkedList<>();
+        for (AbstractMap.SimpleEntry<String, Question> quest : questions) {
+            Question q = quest.getValue();
+            if (usedQuestions.contains(q.getText())) {
+                errorHandling.reportError(q, 
+                        new ParsingException("Definoval/a si opäť tú istú otázku: '" + q.getText() + "', oprav to prosím!"));
+                correct = false;
+            } else {
+                usedQuestions.add(q.getText());
+            }
+            boolean tempCorrectQuestion = q.validate(errorHandling);
+            correct = correct && tempCorrectQuestion;
+        }
+        
+        if (title.trim().isEmpty()) {
+            errorHandling.reportError(this, new ParsingException("Test by mal mať definovaný názov! Dodaj ho prosím."));
+            correct = false;
+        }
+        
+        if (questions.isEmpty()) {
+            errorHandling.reportError(this, new ParsingException("Test '" + title + "' musí mať aspoň jednu otázku! Dodaj ju prosím."));
+            correct = false;
+        }
+        return correct;
     }
 }

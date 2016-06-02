@@ -2,7 +2,7 @@
 <html lang = 'en'>
 
 <head>
-    <title>Novy test</title>
+    <title>Názov testu</title>
 
     <meta charset = 'utf-8'>
     <meta http-equiv = 'X-UA-Compatible' content = 'IE = edge'>
@@ -49,8 +49,8 @@
                 if (result) {
                     window.scrollTo(0, 0);
                     $('#submitBtn').hide();
-                    full = 57;
-                    limit = 29;
+                    full = 62;
+                    limit = 32;
                     total = 0;
                     total += testSingleChoice('#question1');
                     total += testMultipleChoice('#question2');
@@ -85,16 +85,18 @@
 
             $('input', selected).each(function (index, value) {
                 toBeSelected = $.parseJSON($(value).attr('correct'));
-                checked = $(value).is(':checked');
+                if (toBeSelected) {
+                    $(value).parent().parent().addClass('has-success');
+                } else {
+                    $(value).parent().parent().addClass('has-error');
+                }                checked = $(value).is(':checked');
                 if (toBeSelected) {
                     allCorrect += 1; // increment all
                     if (checked) {
-                        $(value).parent().parent().addClass('has-success');
                         selectedCorrect+= 1; // increment points
                     }
                 } else {
                     if (checked) {
-                        $(value).parent().parent().addClass('has-error');
                         selectedIncorrect = true;
                     }
                 }
@@ -116,12 +118,16 @@
             selectedCorrect = false;
 
             $('input', selected).each(function (index, value) {
+                correct = $.parseJSON($(value).attr('correct'));
+                if (correct) {
+                    $(value).parent().parent().addClass('has-success');
+                } else {
+                    $(value).parent().parent().addClass('has-error');
+                }
                 if ($(value).is(':checked')) {
-                    if ($.parseJSON($(value).attr('correct'))) {
-                        $(value).parent().parent().addClass('has-success');
+                    if (correct) {
                         selectedCorrect = true;
                     } else {
-                        $(value).parent().parent().addClass('has-error');
                         selectedCorrect = false;
                     }
                 }
@@ -204,49 +210,43 @@
 
 <body>
 <div class = 'container'>
-<h1 class='text-center'>Novy test</h1>
+<h1 class='text-center'>Názov testu</h1>
 
     <div class='alert alert-success collapse' id='success-info'>
         <strong>Congratulations!</strong> You have passed with <strong id='success-points'></strong> points.
     </div>
 
     <div class='alert alert-danger collapse' id='failure-info'>
-        <strong>Failure!</strong> You have failed with <strong id='failure-points'></strong> points (passing limit was at least 29 points).
+        <strong>Failure!</strong> You have failed with <strong id='failure-points'></strong> points (passing limit was at least 32 points).
     </div>
 
     <div class='alert alert-warning' id='information-info'>
-        <strong>Be careful!</strong> You will need <strong>29</strong> of total 57 points to pass the test.
+        <strong>Be careful!</strong> You will need <strong>32</strong> of total 62 points to pass the test.
     </div>
 
 
     <div style='margin:25px 0 25px 0;'>
         <form class='form-horizontal questionHeader' role='form' id='question1' points='10'>
             <div class='form-group'>
-                <label class='control-label col-sm-3'>Kto je Sergej?</label>
+                <label class='control-label col-sm-3'>Koľko mám rokov?</label>
 
                 <div class='col-sm-8'>
                     <div class='radio'>
                         <label>
-                            <input type='radio' name='question1optionsRadios' correct='false'>
-                            Frajer
-                        </label>
-                    </div>
-                    <div class='radio'>
-                        <label>
-                            <input type='radio' name='question1optionsRadios' correct='false'>
-                            Cigan
-                        </label>
-                    </div>
-                    <div class='radio'>
-                        <label>
-                            <input type='radio' name='question1optionsRadios' correct='false'>
-                            Amater
-                        </label>
-                    </div>
-                    <div class='radio'>
-                        <label>
                             <input type='radio' name='question1optionsRadios' correct='true'>
-                            Slaby
+                            28 rokov
+                        </label>
+                    </div>
+                    <div class='radio'>
+                        <label>
+                            <input type='radio' name='question1optionsRadios' correct='false'>
+                            29 rokov
+                        </label>
+                    </div>
+                    <div class='radio'>
+                        <label>
+                            <input type='radio' name='question1optionsRadios' correct='false'>
+                            30 rokov
                         </label>
                     </div>
                 </div>
@@ -257,136 +257,117 @@
     </div>
 
     <div style='margin:25px 0 25px 0;'>
-        <form class='form-horizontal questionHeader' role='form' id='question2' points='20'>
+        <form class='form-horizontal questionHeader' role='form' id='question2' points='12'>
             <div class='form-group'>
-                <label class='control-label col-sm-3'>Kto je Milan?</label>
+                <label class='control-label col-sm-3'>Aké ovocie mám rád?</label>
 
                 <div class='col-sm-8'>
                     <div class='checkbox'>
                         <label>
-                            <input type='checkbox' correct='true'> hlupy
+                            <input type='checkbox' correct='true'> jahody
                         </label>
                     </div>
 
                     <div class='checkbox'>
                         <label>
-                            <input type='checkbox' correct='true'> Cigan
+                            <input type='checkbox' correct='false'> mango
                         </label>
                     </div>
 
                     <div class='checkbox'>
                         <label>
-                            <input type='checkbox' correct='false'> Amater
+                            <input type='checkbox' correct='false'> egreše
                         </label>
                     </div>
 
                     <div class='checkbox'>
                         <label>
-                            <input type='checkbox' correct='false'> Slaby
+                            <input type='checkbox' correct='true'> melón
                         </label>
                     </div>
 
                     <small class='text-muted'>Watch out, if you select an incorrect option, the whole question will be considered incorrect.</small>
                 </div>
 
-                <label class='control-label col-sm-1 points'>?/20</label>
-            </div>
-        </form>
-    </div>
-
-    <div style='margin:25px 0 25px 0;'>
-        <form class='form-horizontal questionHeader' role='form' id='question3' points='12'>
-            <div class='form-group'>
-                <label class='control-label col-sm-3'>Kto je Misko?</label>
-
-                <div class='col-sm-8'>
-                    <input type='text' class='form-control' correctAnswer='Misko' caseSensitive='false'>
-                    <small class='text-muted'>Question is not case sensitive.</small>
-                </div>
                 <label class='control-label col-sm-1 points'>?/12</label>
             </div>
         </form>
     </div>
 
     <div style='margin:25px 0 25px 0;'>
-        <form class='form-horizontal questionHeader' role='form' id='question4' points='15'>
+        <form class='form-horizontal questionHeader' role='form' id='question3' points='20'>
             <div class='form-group'>
-                <label class='control-label col-sm-3'>Sparuj inteligentov s ich protivnikmi</label>
-                <label class='col-sm-offset-8 control-label col-sm-1 points'>?/15</label>
+                <label class='control-label col-sm-3'>Ako sa mám?</label>
+
+                <div class='col-sm-8'>
+                    <input type='text' class='form-control' correctAnswer='dobre' caseSensitive='false'>
+                    <small class='text-muted'>Question is not case sensitive.</small>
+                </div>
+                <label class='control-label col-sm-1 points'>?/20</label>
+            </div>
+        </form>
+    </div>
+
+    <div style='margin:25px 0 25px 0;'>
+        <form class='form-horizontal questionHeader' role='form' id='question4' points='20'>
+            <div class='form-group'>
+                <label class='control-label col-sm-3'>Spoj logické protiklady:</label>
+                <label class='col-sm-offset-8 control-label col-sm-1 points'>?/20</label>
             </div>
 
 
             <div class='form-group'>
-                <label class='col-sm-offset-3 control-label col-sm-3 slimFont'>Milan</label>
+                <label class='col-sm-offset-3 control-label col-sm-3 slimFont'>pekný</label>
                 <label class=' control-label col-sm-1' style='text-align: center;'>&#x21d0;&#x21d2;</label>
 
                 <div class='col-sm-4'>
-                    <select class='form-control' correct='Nosal'>
-                        <option value='Krepy'>Krepy</option>
-                        <option value='Balaz'>Balaz</option>
-                        <option value='Einstein'>Einstein</option>
-                        <option value='Nosal'>Nosal</option>
-                        <option value='Chodarev'>Chodarev</option>
+                    <select class='form-control' correct='škaredý'>
+                        <option value='pomalý'>pomalý</option>
+                        <option value='biely'>biely</option>
+                        <option value='škaredý'>škaredý</option>
+                        <option value='studený'>studený</option>
                     </select>
                 </div>
             </div>
 
             <div class='form-group'>
-                <label class='col-sm-offset-3 control-label col-sm-3 slimFont'>Albert</label>
+                <label class='col-sm-offset-3 control-label col-sm-3 slimFont'>čierny</label>
                 <label class=' control-label col-sm-1' style='text-align: center;'>&#x21d0;&#x21d2;</label>
 
                 <div class='col-sm-4'>
-                    <select class='form-control' correct='Einstein'>
-                        <option value='Krepy'>Krepy</option>
-                        <option value='Balaz'>Balaz</option>
-                        <option value='Einstein'>Einstein</option>
-                        <option value='Nosal'>Nosal</option>
-                        <option value='Chodarev'>Chodarev</option>
+                    <select class='form-control' correct='biely'>
+                        <option value='pomalý'>pomalý</option>
+                        <option value='biely'>biely</option>
+                        <option value='škaredý'>škaredý</option>
+                        <option value='studený'>studený</option>
                     </select>
                 </div>
             </div>
 
             <div class='form-group'>
-                <label class='col-sm-offset-3 control-label col-sm-3 slimFont'>Sergej</label>
+                <label class='col-sm-offset-3 control-label col-sm-3 slimFont'>rýchly</label>
                 <label class=' control-label col-sm-1' style='text-align: center;'>&#x21d0;&#x21d2;</label>
 
                 <div class='col-sm-4'>
-                    <select class='form-control' correct='Chodarev'>
-                        <option value='Krepy'>Krepy</option>
-                        <option value='Balaz'>Balaz</option>
-                        <option value='Einstein'>Einstein</option>
-                        <option value='Nosal'>Nosal</option>
-                        <option value='Chodarev'>Chodarev</option>
+                    <select class='form-control' correct='pomalý'>
+                        <option value='pomalý'>pomalý</option>
+                        <option value='biely'>biely</option>
+                        <option value='škaredý'>škaredý</option>
+                        <option value='studený'>studený</option>
                     </select>
                 </div>
             </div>
 
             <div class='form-group'>
-                <label class='col-sm-offset-3 control-label col-sm-3 slimFont'>Jozef</label>
+                <label class='col-sm-offset-3 control-label col-sm-3 slimFont'>horúci</label>
                 <label class=' control-label col-sm-1' style='text-align: center;'>&#x21d0;&#x21d2;</label>
 
                 <div class='col-sm-4'>
-                    <select class='form-control' correct='Balaz'>
-                        <option value='Krepy'>Krepy</option>
-                        <option value='Balaz'>Balaz</option>
-                        <option value='Einstein'>Einstein</option>
-                        <option value='Nosal'>Nosal</option>
-                        <option value='Chodarev'>Chodarev</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class='form-group'>
-                <label class='col-sm-offset-3 control-label col-sm-3 slimFont'>Lukas</label>
-                <label class=' control-label col-sm-1' style='text-align: center;'>&#x21d0;&#x21d2;</label>
-
-                <div class='col-sm-4'>
-                    <select class='form-control' correct='Krepy'>
-                        <option value='Krepy'>Krepy</option>
-                        <option value='Balaz'>Balaz</option>
-                        <option value='Einstein'>Einstein</option>
-                        <option value='Nosal'>Nosal</option>
-                        <option value='Chodarev'>Chodarev</option>
+                    <select class='form-control' correct='studený'>
+                        <option value='pomalý'>pomalý</option>
+                        <option value='biely'>biely</option>
+                        <option value='škaredý'>škaredý</option>
+                        <option value='studený'>studený</option>
                     </select>
                 </div>
             </div>

@@ -1,18 +1,15 @@
 package language.model;
 
+import language.builder.ErrorHandlingUtils;
+import language.builder.ParsingException;
+
 /**
  * Question with open answer.
  * @author Milan
  */
-public class OpenQuestion implements Question {
+public class OpenQuestion extends Question {
     
     public static final String NAME = "open-answer-question";
-    
-    private String text;
-    
-    private int points;
-    
-    private Answer answer;
     
     private boolean caseSensitive = false;
 
@@ -24,39 +21,14 @@ public class OpenQuestion implements Question {
     public OpenQuestion(String text, int points, Answer answer) {
         this.text = text;
         this.points = points;
-        this.answer = answer;
+        this.answers.add(answer);
     }
     
     public OpenQuestion(String text, int points, Answer answer, boolean caseSensitive) {
         this.text = text;
         this.points = points;
-        this.answer = answer;
+        this.answers.add(answer);
         this.caseSensitive = caseSensitive;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    @Override
-    public int getPoints() {
-        return points;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
-    }
-
-    public Answer getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(Answer answer) {
-        this.answer = answer;
     }
 
     public boolean isCaseSensitive() {
@@ -65,19 +37,6 @@ public class OpenQuestion implements Question {
 
     public void setCaseSensitive(boolean caseSensitive) {
         this.caseSensitive = caseSensitive;
-    }
-    
-    @Override
-    public void addAnswer(Answer answer) {
-        if (this.answer != null) {
-            throw new RuntimeException(NAME + " with text \'" + text + "\' cannot have multiple answers, provide only a single correct answer!");
-        } else {
-            if (!answer.isCorrect()) {
-                throw new RuntimeException(NAME + " with text \'" + text + "\' cannot have wrong answer, provide only a single correct answer!");
-            } else {
-                this.answer = answer;
-            }
-        }
     }
 
     @Override
@@ -89,7 +48,7 @@ public class OpenQuestion implements Question {
 + "                <label class='control-label col-sm-3'>" + text + "</label>\n"
 + "\n"
 + "                <div class='col-sm-8'>\n"
-+ "                    <input type='text' class='form-control' correctAnswer='" + answer.getText() + "' caseSensitive='" + caseSensitive + "'>\n"
++ "                    <input type='text' class='form-control' correctAnswer='" + answers.get(0).getText() + "' caseSensitive='" + caseSensitive + "'>\n"
 + "                    " + (caseSensitive ? "<small class='text-muted'>Watch out, the question is case sensitive.</small>" : "<small class='text-muted'>Question is not case sensitive.</small>") + "\n"
 + "                </div>\n"
 + "                <label class='control-label col-sm-1 points'>?/" + points + "</label>\n"
@@ -106,6 +65,39 @@ public class OpenQuestion implements Question {
 
     @Override
     public String toString() {
-        return "OpenQuestion{" + "text=" + text + ", points=" + points + ", answer=" + answer + ", caseSensitive=" + caseSensitive + '}';
+        return "OpenQuestion{" + "text=" + text + ", points=" + points + ", answer=" + answers.get(0).getText() + ", caseSensitive=" + caseSensitive + '}';
+    }
+
+    @Override
+    public boolean validate(ErrorHandlingUtils errorHandling) throws ParsingException {
+        boolean correct = true;
+        for (MatchingPair pair : pairs) {
+            errorHandling.reportError(pair, new ParsingException("Otázka '" + text + "' s otvorenou odpoveďou nemôže mať v sebe definovaný pár '" + 
+                    pair.getLeft() + "' <-> '" + pair.getRight() + "'! Odstráň ho z definície, alebo zmeň typ otázky."));
+            correct = false;
+        }
+        
+        int numberOfAnswers = 0;
+        for (Answer a : answers) {
+            numberOfAnswers++;
+            
+            if (numberOfAnswers == 1) {
+                if (!a.isCorrect()) {
+                    errorHandling.reportError(a, new ParsingException("Otázka '" + text + "' s otvorenou odpoveďou nemôže mať nesprávnu odpoveď (odpoveď '" + a.getText() + "'), ale musí mať práve jednu správnu odpoveď!"));
+                    correct = false;
+                }
+            } else {
+                errorHandling.reportError(a, new ParsingException("Otázka '" + text + "' nesmie mať viacero odpovedí! Ponechaj len jednu správnu a zmaž odpoveď '" + a.getText() + "'."));
+                correct = false;
+            }
+        }
+        
+        if (numberOfAnswers == 0) {
+            errorHandling.reportError(this, new ParsingException("Otázka '" + text + "' musí mať správnu odpoveď! Dodaj ju prosím."));
+            correct = false;
+        }
+        
+        boolean superCorrect = super.validate(errorHandling);
+        return correct && superCorrect;
     }
 }

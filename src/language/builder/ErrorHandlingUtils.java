@@ -61,6 +61,6 @@ public class ErrorHandlingUtils {
     public <T extends Exception> void reportError(Object cause, T exception) throws T {
         System.err.println(exception.getMessage());
         System.err.println("\t at " + debugInfo.get(cause).toString());
-        throw exception;
+        //throw exception;
     }
 }

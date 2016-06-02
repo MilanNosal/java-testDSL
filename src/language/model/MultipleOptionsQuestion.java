@@ -1,55 +1,19 @@
 package language.model;
 
-import java.util.LinkedList;
-import java.util.List;
+import language.builder.ErrorHandlingUtils;
+import language.builder.ParsingException;
 
 /**
  * Question type with multiple correct answers.
  * @author Milan
  */
-public class MultipleOptionsQuestion implements Question {
+public class MultipleOptionsQuestion extends Question {
     
     public static final String NAME = "multiple-options-question";
-    
-    private String text;
-    
-    private int points;
-    
-    private List<Answer> answers = new LinkedList<>();
 
     public MultipleOptionsQuestion(String text, int points) {
         this.text = text;
         this.points = points;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    @Override
-    public int getPoints() {
-        return points;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
-    }
-
-    public List<Answer> getAnswers() {
-        return answers;
-    }
-
-    public void setAnswers(List<Answer> answers) {
-        this.answers = answers;
-    }
-    
-    @Override
-    public void addAnswer(Answer answer) {
-        answers.add(answer);
     }
 
     @Override
@@ -88,5 +52,34 @@ public class MultipleOptionsQuestion implements Question {
     @Override
     public String toString() {
         return "MultipleOptionsQuestion{" + "text=" + text + ", points=" + points + ", answers=" + answers + '}';
+    }
+
+    @Override
+    public boolean validate(ErrorHandlingUtils errorHandling) throws ParsingException {
+        boolean correct = true;
+        for (MatchingPair pair : pairs) {
+            errorHandling.reportError(pair, new ParsingException("Otázka '" + text + "' s viacerými správnymi odpoveďami nemôže mať v sebe definovaný pár '" + 
+                    pair.getLeft() + "' <-> '" + pair.getRight() + "'! Odstráň ho z definície, alebo zmeň typ otázky."));
+            correct = false;
+        }
+        
+        int numberOfCorrect = 0;
+        int numberOfIncorrect = 0;
+        for (Answer a : answers) {
+            if (a.isCorrect()) {
+                numberOfCorrect++;
+            } else {
+                numberOfIncorrect++;
+            }
+        }
+        
+        if (numberOfCorrect == 0 || numberOfIncorrect == 0) {
+            errorHandling.reportError(this, new ParsingException("Otázka '" + text + "' musí mať aspoň jednu " 
+                    + (numberOfCorrect == 0 ? "správnu" : "nesprávnu") + " odpoveď! Dodaj ju prosím."));
+            correct = false;
+        }
+        
+        boolean superCorrect = super.validate(errorHandling);
+        return correct && superCorrect;
     }
 }

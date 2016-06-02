@@ -30,6 +30,16 @@ public abstract class TestBuilder {
      */
     private final ErrorHandlingUtils errorHandling = new ErrorHandlingUtils(this.getClass());
     
+    /**
+     * Reprezentuje pozitívne rozhodnutie pre podporu odlišnosti veľkých a malých písmen.
+     */
+    protected final static boolean ANO = true;
+    
+    /**
+     * Reprezentuje negatívne rozhodnutie pre podporu odlišnosti veľkých a malých písmen (na rozdiel sa nemá brať ohľad).
+     */
+    protected final static boolean NIE = false; 
+    
     private Test test;
     
     /**
@@ -51,56 +61,135 @@ public abstract class TestBuilder {
         define();
         if (validate()) {
             generate();
+        } else {
+            System.err.println("Našli sa chyby, prosím oprav ich a spusti test znova.");
         }
     }
     
-    
-    protected void test(String title, int minimalPercentage, Question... questions) {
-        test = new Test(title, minimalPercentage);
-        Arrays.stream(questions).forEach((q) -> test.addQuestion(q));
+    /**
+     * Vytvorí nový test. V rámci testu je možné definovať jeho názov, počet percent, ktoré je potrebné
+     * dosiahnúť na úspech v teste, a zoznam otázok, ktoré budú v teste. Ak je definícia testu bez chyby,
+     * test sa automaticky spustí, inak vypíše chyby, ktoré musíš opraviť (spolu s odkazom na riadok kde je chyba).
+     * @param nazov Text v úvodzovkách definujúci názov testu.
+     * @param potrebnePercentaBodov Číslo od 0 do 100 definujúce, koľko percent bodov je potrebné dosiahnúť na úspech.
+     * @param otazky Zoznam otázok, z ktorých sa test skladá.
+     */
+    protected void test(String nazov, int potrebnePercentaBodov, Question... otazky) {
+        test = new Test(nazov, potrebnePercentaBodov);
+        Arrays.stream(otazky).forEach((q) -> test.addQuestion(q));
         errorHandling.registerObject(test);
     }
     
-    protected SingleOptionQuestion single_choice_question(String text, int points, Answer... answers) {
-        SingleOptionQuestion soq = new SingleOptionQuestion(text, points);
-        Arrays.stream(answers).forEach((a) -> soq.addAnswer(a));
+    /**
+     * Vytvorí otázku s jedinou správnou odpoveďou. Otázka definuje viacero odpovedí, z ktorých je jedna správna.
+     * Pre výber odpovede je použitý radio button umožňujúci vybrať len jednu odpoveď.
+     * Otázka musí mať práve jednu správnu a aspoň jednu nesprávnu odpoveď.
+     * @param text Text otázky v úvodzovkách.
+     * @param body Počet bodov za danú otázku (musí byť aspoň jeden bod).
+     * @param odpovede Zoznam odpovedí v poradí, v akom sa majú zobraziť.
+     * @return 
+     */
+    protected SingleOptionQuestion otazka_s_jednou_spravnou_odpovedou(String text, int body, Answer... odpovede) {
+        SingleOptionQuestion soq = new SingleOptionQuestion(text, body);
+        Arrays.stream(odpovede).forEach((a) -> soq.addAnswer(a));
         return errorHandling.registerObject(soq);
     }
     
-    protected MultipleOptionsQuestion multiple_choice_question(String text, int points, Answer... answers) {
-        MultipleOptionsQuestion moq = new MultipleOptionsQuestion(text, points);
-        Arrays.stream(answers).forEach((a) -> moq.addAnswer(a));
+    /**
+     * Vytvorí otázku s viacerými správnymi možnosťami. Správnych odpovedí môže byť viac. Za výber každej z nich je možné získať
+     * podiel z možných bodov, napr. ak sú 2 správne odpovede dokopy za 5 bodov, vybratím jednej zíkame 2.5 boda (5/2). Ak však
+     * vyberieme čo i len jednu nesprávnu odpoveď, nezískame žiadne body.
+     * Otázka musí mať aspoň jednu správnu a aspoň jednu nesprávnu odpoveď.
+     * @param text Text otázky v úvodzovkách.
+     * @param body Počet bodov za danú otázku (musí byť aspoň jeden bod).
+     * @param odpovede Zoznam odpovedí v poradí, v akom sa majú zobraziť.
+     * @return 
+     */
+    protected MultipleOptionsQuestion otazka_s_viacerymi_spravnymi_odpovedami(String text, int body, Answer... odpovede) {
+        MultipleOptionsQuestion moq = new MultipleOptionsQuestion(text, body);
+        Arrays.stream(odpovede).forEach((a) -> moq.addAnswer(a));
         return errorHandling.registerObject(moq);
     }
     
-    protected OpenQuestion open_answer_question(String text, int points, Answer answer) {
-        OpenQuestion oaq = new OpenQuestion(text, points, answer, false);
+    /**
+     * Vytvorí otázku s voľnou odpoveďou (nie je poskytnutá množina odpovedí, z ktorej sa vyberá, ale je
+     * potrebné odpoveď vpísať do políčka). Otázka má len jednu správnu odpoveď, ktorú je potrebné uhádnuť. Akákoľvek
+     * iná vpísaná odpoveď je považovaná za nesprávnu. Predvolene neberie ohľad na veľkosť písmen, a teda napr. ak máme správnu odpoveď
+     * "Mačička", test uzná za správnu aj hodnotu "MAČIČKA".
+     * @param text Text otázky v úvodzovkách.
+     * @param body Počet bodov za danú otázku (musí byť aspoň jeden bod).
+     * @param spravnaOdpoved Jedna správna odpoveď, s ktorou sa má porovnávať hodnota vpísaná do políčka.
+     * @return 
+     */
+    protected OpenQuestion otazka_s_volnou_odpovedou(String text, int body, Answer... spravnaOdpoved) {
+        OpenQuestion oaq = new OpenQuestion(text, body);
+        oaq.setCaseSensitive(NIE);
+        Arrays.stream(spravnaOdpoved).forEach((a) -> oaq.addAnswer(a));
         return errorHandling.registerObject(oaq);
     }
     
-    protected OpenQuestion open_answer_question(String text, int points, boolean caseSensitive, Answer answer) {
-        OpenQuestion oaq = new OpenQuestion(text, points, answer, caseSensitive);
+    /**
+     * Vytvorí otázku s voľnou odpoveďou (nie je poskytnutá množina odpovedí, z ktorej sa vyberá, ale je
+     * potrebné odpoveď vpísať do políčka). Otázka má len jednu správnu odpoveď, ktorú je potrebné uhádnuť. Akákoľvek
+     * iná vpísaná odpoveď je považovaná za nesprávnu. Umožňuje rozhodnúť, či sa má brať ohľad na veľkosť písmen alebo nie. Ak sa ohľad berie,
+     * tak napr. ak máme správnu odpoveď "Mačička", test neuzná za správnu hodnotu "MAČIČKA".
+     * @param text Text otázky v úvodzovkách.
+     * @param body Počet bodov za danú otázku (musí byť aspoň jeden bod).
+     * @param zohladnitVelkeAMalePismena Určuje, či sa pri porovnávaní správnej odpovede s vpísanou hodnotou má brať ohľad na rozdiel vo veľkosti písmen (Zadaj ANO, alebo NIE).
+     * @param spravnaOdpoved Jedna správna odpoveď, s ktorou sa má porovnávať hodnota vpísaná do políčka.
+     * @return 
+     */
+    protected OpenQuestion otazka_s_volnou_odpovedou(String text, int body, boolean zohladnitVelkeAMalePismena, Answer... spravnaOdpoved) {
+        OpenQuestion oaq = new OpenQuestion(text, body);
+        oaq.setCaseSensitive(zohladnitVelkeAMalePismena);
+        Arrays.stream(spravnaOdpoved).forEach((a) -> oaq.addAnswer(a));
         return errorHandling.registerObject(oaq);
     }
     
-    protected MatchingPairsQuestion matching_question(String text, int points, MatchingPair... pairs) {
-        MatchingPairsQuestion mpq = new MatchingPairsQuestion(text, points);
-        Arrays.stream(pairs).forEach((p) -> mpq.addPair(p));
+    /**
+     * Vytvorí otázku, v ktorej riešiteľ hľadá dvojice (páry), ktoré k sebe patria. Príkladom môžu byť páry
+     * ako "škola" - "učiteľ", "lietadlo" - "pilot", "kasárne" - "vojak", a podobne, kde ku každému výrazu na ľavo
+     * je potrebné nájsť správny prvok z množiny tých čo sú napravo. Prvky sprava sú náhodne premiešané, aby nebolo možné ľahko uhádnuť čo patrí k čomu.
+     * @param text Text otázky v úvodzovkách.
+     * @param body Počet bodov za danú otázku (musí byť aspoň jeden bod).
+     * @param dvojice Zoznam dvojíc, ktoré k sebe patria. Prvý prvok dvojice sa zobrazí naľavo, druhý sa dá do množiny, z ktorej je potom potrebné vybrať ten správny prvok.
+     * @return 
+     */
+    protected MatchingPairsQuestion otazka_na_hladanie_parov(String text, int body, MatchingPair... dvojice) {
+        MatchingPairsQuestion mpq = new MatchingPairsQuestion(text, body);
+        Arrays.stream(dvojice).forEach((p) -> mpq.addPair(p));
         return errorHandling.registerObject(mpq);
     }
     
-    protected Answer correct_answer(String text) {
+    /**
+     * Vytvorí správnu odpoveď na otázku.
+     * @param text Text odpovede v úvodzovkách.
+     * @return 
+     */
+    protected Answer spravna_odpoved(String text) {
         Answer answer = new Answer(text, true);
         return errorHandling.registerObject(answer);
     }
     
-    protected Answer wrong_answer(String text) {
+    /**
+     * Vytvorí nesprávnu odpoveď na otázku.
+     * @param text Text odpovede v úvodzovkách.
+     * @return 
+     */
+    protected Answer nespravna_odpoved(String text) {
         Answer answer = new Answer(text, false);
         return errorHandling.registerObject(answer);
     }
     
-    protected MatchingPair matching_pair(String leftValue, String rightValue) {
-        MatchingPair pair = new MatchingPair(leftValue, rightValue);
+    /**
+     * Vytvorí dvojicu k sebe patriacich prvkov pre otázku na hľadanie párov. Prvý prvok je ten,
+     * ktorý je zobrazený, druhý je ten, ktorý sa pridá do zoznamu, z ktorého sa vyberá správna dvojica.
+     * @param prvyPrvok Prvok, ktorý je zobrazený používateľovi.
+     * @param druhyPrvok Prvok, ktorý sa pridá do množiny možností, z ktorých sa vyberá správny pár.
+     * @return 
+     */
+    protected MatchingPair dvojica(String prvyPrvok, String druhyPrvok) {
+        MatchingPair pair = new MatchingPair(prvyPrvok, druhyPrvok);
         return errorHandling.registerObject(pair);
     }
     
@@ -111,46 +200,25 @@ public abstract class TestBuilder {
      * @throws ParsingException 
      */
     private boolean validate() throws ParsingException {
-//        List<String> usedEntNames = new LinkedList<String>();
-//        for(Entity entity : model.getEntities()) {
-//            if(usedEntNames.contains(entity.getName())) {
-//                // the user will be navigated to the line where
-//                // the duplicated entity was defined
-//                errorHandling.reportError(entity, 
-//                        new ParsingException("Defined duplicate entity with name " + entity.getName()));
-//            } else {
-//                usedEntNames.add(entity.getName());
-//            }
-//            List<String> usedPropNames = new LinkedList<String>();
-//            for(Property prop : entity.getProperties()) {
-//                if(usedPropNames.contains(prop.getName())) {
-//                    errorHandling.reportError(prop, 
-//                            new ParsingException("Duplicate property in entity " + entity.getName()
-//                            + " with name " + prop.getName()));
-//                } else {
-//                    usedPropNames.add(prop.getName());
-//                }
-//            }
-//        }
-        return true;
+        return test.validate(errorHandling);
     }
     
     private void generate() {
         String output = test.toHTML();
         
-        File file = new File("html/" + test.getTitle() + ".html");
+        File file = new File("html/test.html");
         file.mkdir();
         if (file.exists()) {
             file.delete();
         }
 
-        Path path = Paths.get("html/" + test.getTitle() + ".html");
+        Path path = Paths.get("html/test.html");
         try (BufferedWriter writer = Files.newBufferedWriter(path, StandardOpenOption.CREATE)) {
             writer.write(output);
         } catch (IOException ex) {
             Logger.getLogger(TestBuilder.class.getName()).log(Level.SEVERE, null, ex);
         }
-        file = new File("html/" + test.getTitle() + ".html");
+        file = new File("html/test.html");
         if(Desktop.isDesktopSupported())
         {
             try {

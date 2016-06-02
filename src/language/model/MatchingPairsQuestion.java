@@ -4,54 +4,20 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
+import language.builder.ErrorHandlingUtils;
+import language.builder.ParsingException;
 
 /**
  * Question type providing lists 
  * @author Milan
  */
-public class MatchingPairsQuestion implements Question {
+public class MatchingPairsQuestion extends Question {
     
     public static final String NAME = "matching-pairs-question";
-    
-    private String text;
-    
-    private int points;
-    
-    private List<MatchingPair> pairs = new LinkedList<>();
 
     public MatchingPairsQuestion(String text, int points) {
         this.text = text;
         this.points = points;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    @Override
-    public int getPoints() {
-        return points;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
-    }
-
-    public List<MatchingPair> getPairs() {
-        return pairs;
-    }
-
-    public void setPairs(List<MatchingPair> pairs) {
-        this.pairs = pairs;
-    }
-    
-    @Override
-    public void addPair(MatchingPair pair) {
-        this.pairs.add(pair);
     }
     
     public List<String> getAllMatchingOptions() {
@@ -102,5 +68,19 @@ public class MatchingPairsQuestion implements Question {
     @Override
     public String toJS(String id) {
         return "testPairingAnswer('#" + id + "')";
+    }
+
+    @Override
+    public boolean validate(ErrorHandlingUtils errorHandling) throws ParsingException {
+        boolean correct = true;
+        
+        for (Answer a : answers) {
+            errorHandling.reportError(a, new ParsingException("Otázka na hľadanie zodpovedajúcich párov '" + text + "' nemôže mať v sebe definovanú odpoveď '" + 
+                    a.getText()+ "'! Odstráň odpoveď z definície, alebo zmeň typ otázky."));
+            correct = false;
+        }
+        
+        boolean superCorrect = super.validate(errorHandling);
+        return correct && superCorrect;
     }
 }
