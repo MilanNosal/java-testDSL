@@ -1,42 +1,33 @@
+//EDSLAddon_start_fold desc="Start defining test here (run it by pressing Shift + F6):"
 package test;
 
 import language.builder.ParsingException;
 import language.builder.TestBuilder;
 
 public class BiologyTest extends TestBuilder {
-
+    
     @Override
     protected void define() {
-        test("Test z Biológie", 51,
-                otazka_s_jednou_spravnou_odpovedou("Ako robí mačička?", 10, 
-                        nespravna_odpoved("hav"),
-                        nespravna_odpoved("múúú"),
-                        spravna_odpoved("miau"),
-                        nespravna_odpoved("bééé")
-                ),
-                otazka_s_volnou_odpovedou("Aké zvieratko robí kváák?", 20,
-                        spravna_odpoved("žabka")
-                ),
-                otazka_s_viacerymi_spravnymi_odpovedami("Ktoré zvieratká papkajú trávičku?", 14,
-                        nespravna_odpoved("levík"),
-                        nespravna_odpoved("medvedík"),
-                        spravna_odpoved("kravička"),
-                        spravna_odpoved("ovečka"),
-                        nespravna_odpoved("hyenka")
-                ),
-                otazka_na_hladanie_parov("Nájdi dievčatko od každého zvieratka:", 20,
-                        dvojica("lev", "levica"),
-                        dvojica("had", "hadica"),
-                        dvojica("krab", "krabica"),
-                        dvojica("medveď", "medvedica")
-                ),
-                otazka_s_volnou_odpovedou("Ako sa povie maličkej kravke?", 20, 
-                        spravna_odpoved("teliatko")
-                )
-        );
+//EDSLAddon_end_fold
+        create_test("Biology test", 20);
+
+        multiple_choice_question("Which of the following are herbivores?", 10);
+        incorrect_answer("Lion");
+        correct_answer("Sheep");
+        incorrect_answer("Bear");
+        correct_answer("Cow");
+
+        open_answer_question("What does a cat say?", 20, "Meow");
+
+        pairing_question("Combine males and females:", 10);
+        pair("Lion", "Lioness");
+        pair("Bull", "Cow");
+        pair("Tiger", "Tigress");
+//EDSLAddon_start_fold desc="Here ends the definition."
     }
     
     public static void main(String[] args) throws ParsingException {
         new BiologyTest().compose();
     }
 }
+//EDSLAddon_end_fold

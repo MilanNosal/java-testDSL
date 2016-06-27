@@ -57,8 +57,8 @@ public class SingleOptionQuestion extends Question {
     public boolean validate(ErrorHandlingUtils errorHandling) throws ParsingException {
         boolean correct = true;
         for (MatchingPair pair : pairs) {
-            errorHandling.reportError(pair, new ParsingException("Otázka '" + text + "' s jednou správnou odpoveďou nemôže mať v sebe definovaný pár '" + 
-                    pair.getLeft() + "' <-> '" + pair.getRight() + "'! Odstráň ho z definície, alebo zmeň typ otázky."));
+            errorHandling.reportError(pair, new ParsingException("Single choice question '" + text + "' cannot define matching pair '" + 
+                    pair.getLeft() + "' <-> '" + pair.getRight() + "'! Remove it, or change the question type to one that supports pairs."));
             correct = false;
         }
         
@@ -71,15 +71,14 @@ public class SingleOptionQuestion extends Question {
                 numberOfIncorrect++;
             }
             if (a.isCorrect() && numberOfCorrect > 1) {
-                errorHandling.reportError(a, new ParsingException("Otázka '" + text + "' s jednou odpoveďou nemôže mať ďalšiu správnu odpoveď, odstráň odpoveď '" +
+                errorHandling.reportError(a, new ParsingException("Single choice question '" + text + "' cannot have multiple correct answers, remove '" +
                         a.getText() + "'."));
                 correct = false;
             }
         }
         
         if (numberOfCorrect == 0 || numberOfIncorrect == 0) {
-            errorHandling.reportError(this, new ParsingException("Otázka '" + text + "' musí mať aspoň jednu " 
-                    + (numberOfCorrect == 0 ? "správnu" : "nesprávnu") + " odpoveď! Dodaj ju prosím."));
+            errorHandling.reportError(this, new ParsingException("Question '" + text + "' has to have at least one correct and one incorrect answer."));
             correct = false;
         }
         

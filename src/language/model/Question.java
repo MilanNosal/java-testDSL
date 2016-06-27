@@ -69,7 +69,7 @@ public abstract class Question {
         for (Answer a : answers) {
             if (usedAnswers.contains(a.getText())) {
                 errorHandling.reportError(a, 
-                        new ParsingException("V rámci tej istej otázky '" + text + "' si opäť definoval/a rovnakú odpoveď: '" + a.getText() + "'! Odstráň ju."));
+                        new ParsingException("In the same question '" + text + "' there are two identical answers: '" + a.getText() + "'! Remove one."));
                 correct = false;
             } else {
                 usedAnswers.add(a.getText());
@@ -79,8 +79,8 @@ public abstract class Question {
         for (MatchingPair mp : pairs) {
             if (usedAnswers.contains(mp.getLeft() + mp.getRight())) {
                 errorHandling.reportError(mp, 
-                        new ParsingException("V rámci tej istej otázky '" + text + "' si opäť definoval/a rovnaký pár: '" + mp.getLeft() + "' <-> '" + mp.getRight() + "'!"
-                                + " Odstráň ho."));
+                        new ParsingException("In the same question '" + text + "' there are two identical matching pairs: '" + mp.getLeft() + "' <-> '" + mp.getRight() + "'!"
+                                + " Remove one."));
                 correct = false;
             } else {
                 usedAnswers.add(mp.getLeft() + mp.getRight());
@@ -88,12 +88,12 @@ public abstract class Question {
         }
         
         if (text.trim().isEmpty()) {
-            errorHandling.reportError(this, new ParsingException("Otázka '" + text + "' musí mať definovaný text! Dodaj ho prosím."));
+            errorHandling.reportError(this, new ParsingException("Every question has to have text! Add it please."));
             correct = false;
         }
         
         if (points < 1) {
-            errorHandling.reportError(this, new ParsingException("Otázka '" + text + "' musí mať kladný počet bodov (aspoň jeden bod, ty si uviedol/uviedla '" + points + "')! Oprav to."));
+            errorHandling.reportError(this, new ParsingException("Question '" + text + "' has to have a positive number of points (at least one, you have stated '" + points + "')! Fix it."));
             correct = false;
         }
         

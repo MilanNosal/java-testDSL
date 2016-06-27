@@ -2,7 +2,7 @@
 <html lang = 'en'>
 
 <head>
-    <title>Test z Biológie</title>
+    <title>Biology test</title>
 
     <meta charset = 'utf-8'>
     <meta http-equiv = 'X-UA-Compatible' content = 'IE = edge'>
@@ -49,14 +49,12 @@
                 if (result) {
                     window.scrollTo(0, 0);
                     $('#submitBtn').hide();
-                    full = 84;
-                    limit = 43;
+                    full = 40;
+                    limit = 20;
                     total = 0;
-                    total += testSingleChoice('#question1');
+                    total += testMultipleChoice('#question1');
                     total += testFreeAnswer('#question2');
-                    total += testMultipleChoice('#question3');
-                    total += testPairingAnswer('#question4');
-                    total += testFreeAnswer('#question5');
+                    total += testPairingAnswer('#question3');
 
                     $('input').each(function (index, value) {
                         $(value).attr('disabled', true);
@@ -211,51 +209,52 @@
 
 <body>
 <div class = 'container'>
-<h1 class='text-center'>Test z Biológie</h1>
+<h1 class='text-center'>Biology test</h1>
 
     <div class='alert alert-success collapse' id='success-info'>
         <strong>Congratulations!</strong> You have passed with <strong id='success-points'></strong> points.
     </div>
 
     <div class='alert alert-danger collapse' id='failure-info'>
-        <strong>Failure!</strong> You have failed with <strong id='failure-points'></strong> points (passing limit was at least 43 points).
+        <strong>Failure!</strong> You have failed with <strong id='failure-points'></strong> points (passing limit was at least 20 points).
     </div>
 
     <div class='alert alert-warning' id='information-info'>
-        <strong>Be careful!</strong> You will need <strong>43</strong> of total 84 points to pass the test.
+        <strong>Be careful!</strong> You will need <strong>20</strong> of total 40 points to pass the test.
     </div>
 
 
     <div style='margin:25px 0 25px 0;'>
         <form class='form-horizontal questionHeader' role='form' id='question1' points='10'>
             <div class='form-group'>
-                <label class='control-label col-sm-3'>Ako robí mačička?</label>
+                <label class='control-label col-sm-3'>Which of the following are herbivores?</label>
 
                 <div class='col-sm-8'>
-                    <div class='radio'>
+                    <div class='checkbox'>
                         <label>
-                            <input type='radio' name='question1optionsRadios' correct='false'>
-                            hav
+                            <input type='checkbox' correct='false'> Lion
                         </label>
                     </div>
-                    <div class='radio'>
+
+                    <div class='checkbox'>
                         <label>
-                            <input type='radio' name='question1optionsRadios' correct='false'>
-                            múúú
+                            <input type='checkbox' correct='true'> Sheep
                         </label>
                     </div>
-                    <div class='radio'>
+
+                    <div class='checkbox'>
                         <label>
-                            <input type='radio' name='question1optionsRadios' correct='true'>
-                            miau
+                            <input type='checkbox' correct='false'> Bear
                         </label>
                     </div>
-                    <div class='radio'>
+
+                    <div class='checkbox'>
                         <label>
-                            <input type='radio' name='question1optionsRadios' correct='false'>
-                            bééé
+                            <input type='checkbox' correct='true'> Cow
                         </label>
                     </div>
+
+                    <small class='text-muted'>Watch out, if you select an incorrect option, the whole question will be considered incorrect.</small>
                 </div>
 
                 <label class='control-label col-sm-1 points'>?/10</label>
@@ -266,10 +265,10 @@
     <div style='margin:25px 0 25px 0;'>
         <form class='form-horizontal questionHeader' role='form' id='question2' points='20'>
             <div class='form-group'>
-                <label class='control-label col-sm-3'>Aké zvieratko robí kváák?</label>
+                <label class='control-label col-sm-3'>What does a cat say?</label>
 
                 <div class='col-sm-8'>
-                    <input type='text' class='form-control' correctAnswer='žabka' caseSensitive='false'>
+                    <input type='text' class='form-control' correctAnswer='Meow' caseSensitive='false'>
                     <small class='text-muted'>Question is not case sensitive.</small>
                 </div>
                 <label class='control-label col-sm-1 points'>?/20</label>
@@ -278,127 +277,52 @@
     </div>
 
     <div style='margin:25px 0 25px 0;'>
-        <form class='form-horizontal questionHeader' role='form' id='question3' points='14'>
+        <form class='form-horizontal questionHeader' role='form' id='question3' points='10'>
             <div class='form-group'>
-                <label class='control-label col-sm-3'>Ktoré zvieratká papkajú trávičku?</label>
-
-                <div class='col-sm-8'>
-                    <div class='checkbox'>
-                        <label>
-                            <input type='checkbox' correct='false'> levík
-                        </label>
-                    </div>
-
-                    <div class='checkbox'>
-                        <label>
-                            <input type='checkbox' correct='false'> medvedík
-                        </label>
-                    </div>
-
-                    <div class='checkbox'>
-                        <label>
-                            <input type='checkbox' correct='true'> kravička
-                        </label>
-                    </div>
-
-                    <div class='checkbox'>
-                        <label>
-                            <input type='checkbox' correct='true'> ovečka
-                        </label>
-                    </div>
-
-                    <div class='checkbox'>
-                        <label>
-                            <input type='checkbox' correct='false'> hyenka
-                        </label>
-                    </div>
-
-                    <small class='text-muted'>Watch out, if you select an incorrect option, the whole question will be considered incorrect.</small>
-                </div>
-
-                <label class='control-label col-sm-1 points'>?/14</label>
-            </div>
-        </form>
-    </div>
-
-    <div style='margin:25px 0 25px 0;'>
-        <form class='form-horizontal questionHeader' role='form' id='question4' points='20'>
-            <div class='form-group'>
-                <label class='control-label col-sm-3'>Nájdi dievčatko od každého zvieratka:</label>
-                <label class='col-sm-offset-8 control-label col-sm-1 points'>?/20</label>
+                <label class='control-label col-sm-3'>Combine males and females:</label>
+                <label class='col-sm-offset-8 control-label col-sm-1 points'>?/10</label>
             </div>
 
 
             <div class='form-group'>
-                <label class='col-sm-offset-3 control-label col-sm-3 slimFont'>lev</label>
+                <label class='col-sm-offset-3 control-label col-sm-3 slimFont'>Lion</label>
                 <label class=' control-label col-sm-1' style='text-align: center;'>&#x21d0;&#x21d2;</label>
 
                 <div class='col-sm-4'>
-                    <select class='form-control' correct='levica'>
-                        <option value='krabica'>krabica</option>
-                        <option value='medvedica'>medvedica</option>
-                        <option value='hadica'>hadica</option>
-                        <option value='levica'>levica</option>
+                    <select class='form-control' correct='Lioness'>
+                        <option value='Tigress'>Tigress</option>
+                        <option value='Lioness'>Lioness</option>
+                        <option value='Cow'>Cow</option>
                     </select>
                 </div>
             </div>
 
             <div class='form-group'>
-                <label class='col-sm-offset-3 control-label col-sm-3 slimFont'>had</label>
+                <label class='col-sm-offset-3 control-label col-sm-3 slimFont'>Bull</label>
                 <label class=' control-label col-sm-1' style='text-align: center;'>&#x21d0;&#x21d2;</label>
 
                 <div class='col-sm-4'>
-                    <select class='form-control' correct='hadica'>
-                        <option value='krabica'>krabica</option>
-                        <option value='medvedica'>medvedica</option>
-                        <option value='hadica'>hadica</option>
-                        <option value='levica'>levica</option>
+                    <select class='form-control' correct='Cow'>
+                        <option value='Tigress'>Tigress</option>
+                        <option value='Lioness'>Lioness</option>
+                        <option value='Cow'>Cow</option>
                     </select>
                 </div>
             </div>
 
             <div class='form-group'>
-                <label class='col-sm-offset-3 control-label col-sm-3 slimFont'>krab</label>
+                <label class='col-sm-offset-3 control-label col-sm-3 slimFont'>Tiger</label>
                 <label class=' control-label col-sm-1' style='text-align: center;'>&#x21d0;&#x21d2;</label>
 
                 <div class='col-sm-4'>
-                    <select class='form-control' correct='krabica'>
-                        <option value='krabica'>krabica</option>
-                        <option value='medvedica'>medvedica</option>
-                        <option value='hadica'>hadica</option>
-                        <option value='levica'>levica</option>
+                    <select class='form-control' correct='Tigress'>
+                        <option value='Tigress'>Tigress</option>
+                        <option value='Lioness'>Lioness</option>
+                        <option value='Cow'>Cow</option>
                     </select>
                 </div>
             </div>
 
-            <div class='form-group'>
-                <label class='col-sm-offset-3 control-label col-sm-3 slimFont'>medveď</label>
-                <label class=' control-label col-sm-1' style='text-align: center;'>&#x21d0;&#x21d2;</label>
-
-                <div class='col-sm-4'>
-                    <select class='form-control' correct='medvedica'>
-                        <option value='krabica'>krabica</option>
-                        <option value='medvedica'>medvedica</option>
-                        <option value='hadica'>hadica</option>
-                        <option value='levica'>levica</option>
-                    </select>
-                </div>
-            </div>
-
-        </form>
-    </div>
-
-    <div style='margin:25px 0 25px 0;'>
-        <form class='form-horizontal questionHeader' role='form' id='question5' points='20'>
-            <div class='form-group'>
-                <label class='control-label col-sm-3'>Ako sa povie maličkej kravke?</label>
-
-                <div class='col-sm-8'>
-                    <input type='text' class='form-control' correctAnswer='teliatko' caseSensitive='false'>
-                    <small class='text-muted'>Question is not case sensitive.</small>
-                </div>
-                <label class='control-label col-sm-1 points'>?/20</label>
-            </div>
         </form>
     </div>
 

@@ -16,13 +16,13 @@ public class Test {
     
     private String title;
     
-    private int percMinimum;
+    private int minPoints;
     
     private List<AbstractMap.SimpleEntry<String, Question>> questions = new LinkedList<>();
 
-    public Test(String title, int percMinimum) {
+    public Test(String title, int minPoints) {
         this.title = title;
-        this.percMinimum = percMinimum;
+        this.minPoints = minPoints;
     }
 
     public String getTitle() {
@@ -33,16 +33,24 @@ public class Test {
         this.title = title;
     }
 
-    public int getPercMinimum() {
-        return percMinimum;
+    public int getMinPoints() {
+        return minPoints;
     }
 
-    public void setPercMinimum(int percMinimum) {
-        this.percMinimum = percMinimum;
+    public void setMinPoints(int minPoints) {
+        this.minPoints = minPoints;
     }
 
     public List<AbstractMap.SimpleEntry<String, Question>> getQuestions() {
         return questions;
+    }
+    
+    public Question getLastQuestion() {
+        if (questions.isEmpty()) {
+            throw new RuntimeException("You tried to add answer/pair before you added a question. First define a question, then add answers/pairs!");
+        } else {
+            return questions.get(questions.size() - 1).getValue();
+        }
     }
 
     public void setQuestions(List<AbstractMap.SimpleEntry<String, Question>> questions) {
@@ -60,12 +68,12 @@ public class Test {
     }
     
     public int getPassingMinimum() {
-        return new Double(Math.ceil(getTotalPoints() * (this.percMinimum / 100.0))).intValue();
+        return this.minPoints;
     }
 
     @Override
     public String toString() {
-        return "Test{" + "title=" + title + ", percMinimum=" + percMinimum + ", questions=" + questions + '}';
+        return "Test{" + "title=" + title + ", minPoints=" + minPoints + ", questions=" + questions + '}';
     }
     
     public String toHTML() {
@@ -301,10 +309,10 @@ public class Test {
     
     public boolean validate(ErrorHandlingUtils errorHandling) throws ParsingException {
         boolean correct = true;
-        if (percMinimum > 100 || percMinimum < 0) {
+        if (minPoints > getTotalPoints() || minPoints < 0) {
             errorHandling.reportError(this, 
-                    new ParsingException("Parameter testu '" + title + "' potrebnePercentaBodov predstavuje minimálnu hranicu na úspešné absolvovanie testu "
-                            + "v percentách, tzn. že musí mať rozsah 0-100, ty si uviedol/dla " + percMinimum + "! Prosím, oprav to!"));
+                    new ParsingException("Minimal points for the success in the test '" + title + "' has to be in range 0-" + getTotalPoints() 
+                            + " (total possible points for the test), you have stated " + minPoints + "! Fix it please!"));
             correct = false;
         }
         
@@ -313,7 +321,7 @@ public class Test {
             Question q = quest.getValue();
             if (usedQuestions.contains(q.getText())) {
                 errorHandling.reportError(q, 
-                        new ParsingException("Definoval/a si opäť tú istú otázku: '" + q.getText() + "', oprav to prosím!"));
+                        new ParsingException("You have defined two question with text: '" + q.getText() + "', fix it (you can have only one question with the same text)!"));
                 correct = false;
             } else {
                 usedQuestions.add(q.getText());
@@ -323,12 +331,12 @@ public class Test {
         }
         
         if (title.trim().isEmpty()) {
-            errorHandling.reportError(this, new ParsingException("Test by mal mať definovaný názov! Dodaj ho prosím."));
+            errorHandling.reportError(this, new ParsingException("Test have to have a title, fix it please."));
             correct = false;
         }
         
         if (questions.isEmpty()) {
-            errorHandling.reportError(this, new ParsingException("Test '" + title + "' musí mať aspoň jednu otázku! Dodaj ju prosím."));
+            errorHandling.reportError(this, new ParsingException("Test '" + title + "' has to have at least a single question, add it please."));
             correct = false;
         }
         return correct;

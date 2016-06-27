@@ -72,8 +72,8 @@ public class OpenQuestion extends Question {
     public boolean validate(ErrorHandlingUtils errorHandling) throws ParsingException {
         boolean correct = true;
         for (MatchingPair pair : pairs) {
-            errorHandling.reportError(pair, new ParsingException("Otázka '" + text + "' s otvorenou odpoveďou nemôže mať v sebe definovaný pár '" + 
-                    pair.getLeft() + "' <-> '" + pair.getRight() + "'! Odstráň ho z definície, alebo zmeň typ otázky."));
+            errorHandling.reportError(pair, new ParsingException("Open answer Question '" + text + "' cannot define a matching pair '" + 
+                    pair.getLeft() + "' <-> '" + pair.getRight() + "'! Remove it, or change the question type to one that supports it."));
             correct = false;
         }
         
@@ -83,17 +83,17 @@ public class OpenQuestion extends Question {
             
             if (numberOfAnswers == 1) {
                 if (!a.isCorrect()) {
-                    errorHandling.reportError(a, new ParsingException("Otázka '" + text + "' s otvorenou odpoveďou nemôže mať nesprávnu odpoveď (odpoveď '" + a.getText() + "'), ale musí mať práve jednu správnu odpoveď!"));
+                    errorHandling.reportError(a, new ParsingException("Open answer question '" + text + "' cannot define an incorrect answer (answer '" + a.getText() + "')!"));
                     correct = false;
                 }
             } else {
-                errorHandling.reportError(a, new ParsingException("Otázka '" + text + "' nesmie mať viacero odpovedí! Ponechaj len jednu správnu a zmaž odpoveď '" + a.getText() + "'."));
+                errorHandling.reportError(a, new ParsingException("Open answer question '" + text + "' cannot have multiple answers. Remove answer '" + a.getText() + "'."));
                 correct = false;
             }
         }
         
         if (numberOfAnswers == 0) {
-            errorHandling.reportError(this, new ParsingException("Otázka '" + text + "' musí mať správnu odpoveď! Dodaj ju prosím."));
+            errorHandling.reportError(this, new ParsingException("Open answer question '" + text + "' has to have a single correct answer! Add it please."));
             correct = false;
         }
         

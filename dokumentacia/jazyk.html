@@ -47,99 +47,55 @@
         
         <p>V jazyku môžeš používať niekoľko základných príkazov. V tejto časti si ich predstavíme a vysvetlíme si ich význam.</p>
         <ul>
-          <li><a href="#test">Príkaz <tt>test</tt></a></li>
+          <li><a href="#test">Príkaz <tt>vytvor_test</tt></a></li>
           <li><a href="#otazka_s_jednou_spravnou_odpovedou">Príkaz <tt>otazka_s_jednou_spravnou_odpovedou</tt></a></li>
-          <li><a href="#spravna_odpoved">Príkaz <tt>spravna_odpoved</tt></a></li>
-          <li><a href="#nespravna_odpoved">Príkaz <tt>nespravna_odpoved</tt></a></li>
           <li><a href="#otazka_s_viacerymi_spravnymi_odpovedami">Príkaz <tt>otazka_s_viacerymi_spravnymi_odpovedami</tt></a></li>
           <li><a href="#otazka_s_volnou_odpovedou">Príkaz <tt>otazka_s_volnou_odpovedou</tt></a></li>
-          <li><a href="#otazka_na_hladanie_parov">Príkaz <tt>otazka_na_hladanie_parov</tt></a></li>
-          <li><a href="#dvojica">Príkaz <tt>dvojica</tt></a></li>
+          <li><a href="#otazka_na_hladanie_parov">Príkaz <tt>otazka_na_hladanie_dvojic</tt></a></li>
         </ul>
         
-        <p>Každý príkaz, ktorý napíšeš, ti odporúčam písať na nový riadok.</p>
+        <p>Každý príkaz píš na nový riadok (a nezabudni za neho dať bodkočiarku).</p>
         
         
         
         
-        <h4 id="test">Príkaz <tt>test</tt></h4>
+        <h4 id="test">Príkaz <tt>vytvor_test</tt></h4>
         
-        <p>Príkaz test je základný príkaz, ktorý vytvorí samotný test. Tento príkaz napíšeš v jednom súbore len raz - ten totiž vytvorí jeden test. Príklad použitia tohto príkazu môžeš vidieť na nasledujúcom obrázku. Napíšeš slovo test a potom v okrúhlych zátvorkách uvedieš jeho parametre oddelené čiarkami.</p>
+        <p>Príkaz <b>vytvor_test</b> je základný príkaz, ktorý vytvorí samotný test. Tento príkaz napíšeš v jednom súbore len raz - ten totiž vytvorí jeden test. Príklad použitia tohto príkazu môžeš vidieť na nasledujúcom obrázku. Napíšeš slovo vytvor_test a potom v okrúhlych zátvorkách uvedieš jeho parametre oddelené čiarkami - prvý parameter je názov testu, a druhý minimálny počet bodov potrebný na úspech.</p>
         
-        <a href="img/test.png"><img style="width: 80%; height: 80%" src="img/test.png"></a>
-        
-        <ol>
-          <li>Prvý parameter je názov testu v úvodzovkách - ten bude použitý ako nadpis v zobrazení.</li>
-          <li>Druhý parameter je percento (0-100), ktoré uvádza, koľko bodov potrebuješ z testu získať. Na obrázku je to číslo 51, čo znamená, že na úspech potrebuješ aspoň 51% bodov (tzn. ak je za testo dokopy 20 bodov, tak potrebuješ aspoň 11 bodov). Počet bodov v teste sa zratáva z jednotlivých otázok.</li>
-          <li>No a napokon za týmito dvoma parametrami uvádzaš pomocou nasledujúcich príkazov zoznam otázok (otázky sú od seba opäť oddelené čiarkou), ktoré majú v teste byť.</li>
-        </ol>
-        
-        <p><b>Pozor na zátvorky!</b> Tento jazyk je citlivý na správne použitie zátvoriek - ak nejakú zátvorku otvoríš (uvedieš zátvorku "("), musíš ju aj uzavrieť (použiť jej párovú zátvorku ")"). Odporúčam ti vždy od-enterovať končiace zátvorky na nový prázdny riadok, aby si ich omylom nezmazal, tak ich budeš lepšie vidieť a dávať na ne väčší pozor. Všimni si na predchádzajúcom obrázku, že ukončujúca zátvorka za testom je na novom riadku na konci - takto sa ju snažím zvýrazniť aby som na ňu nezabudol. Všímaj si prácu so zátvorkami aj v ďalších príkazoch.</p>
-        
+        <a href="img/test.png"><img style="width: 100%; height: 100%" src="img/test.png"></a>
+                
+        <p>Za týmto príkazom uvádzaš pomocou nasledujúcich príkazov zoznam otázok (otázky sú od seba opäť oddelené čiarkou), ktoré majú v teste byť.</p>
+                
         
         
         
         <h4 id="otazka_s_jednou_spravnou_odpovedou">Príkaz <tt>otazka_s_jednou_spravnou_odpovedou</tt></h4>
         
-        <p>Príkazom otazka_s_jednou_spravnou_odpovedou vytvoríš novú otázku, ktorá má len jednu správnu odpoveď (viď príklad na nasledujúcom obrázku):</p>
+        <p>Príkazom <b>otazka_s_jednou_spravnou_odpovedou</b> vytvoríš novú otázku, ktorá má len jednu správnu odpoveď (viď príklad na nasledujúcom obrázku):</p>
         <a href="img/jednaOdpovedPr.png"><img style="width: 100%; height: 100%" src="img/jednaOdpovedPr.png"></a>
         
-        <p>Otázka s jednou správnou odpoveďou je zapísaná nasledovne:</p>
-        <a href="img/jednaOdpoved.png"><img style="width: 100%; height: 100%" src="img/jednaOdpoved.png"></a>
-        
-        <p>Aj za týmto príkazom nasledujú parametre ohraničené okrúhlymi zátvorkami a sú oddelené čiarkami.</p>
-        
-        <ol>
-          <li>Prvý parameter je text otázky v úvodzovkách, viď príklad.</li>
-          <li>Druhý parameter je počet bodov za danú otázku (v príklade je to 10 bodov).</li>
-          <li>No a napokon za týmito dvoma parametrami uvádzaš pomocou príkazov <a href="#spravna_odpoved"><tt>spravna_odpoved</tt></a> a <a href="#nespravna_odpoved"><tt>nespravna_odpoved</tt></a> zoznam odpovedí, ktoré sa pri tejto otázke zobrazia.</li>
-        </ol>
-        
-        <p>V rámci tejto otázky sa však môže definovať iba jedna správna otázka. Naviac otázka musí mať definovanú aspoň jednu nesprávnu odpoveď.</p>
-        
-        
-        
-        <h4 id="spravna_odpoved">Príkaz <tt>spravna_odpoved</tt></h4>
-        
-        <p>Príkazom spravna_odpoved vytvoríš odpoveď na otázku, ktorá sa v danej otázke bude považovať za správnu odpoveď (viď príklad na nasledujúcom obrázku v rámci otázky s jednou správnou odpoveďou):</p>
-        <a href="img/spravnaOdpoved.png"><img style="width: 100%; height: 100%" src="img/spravnaOdpoved.png"></a>
-        
-        <p>Jej jediný parameter je text, ktorý sa pri odpovedi zobrazí (v príklade je to počet rokov).</p>
-        
-        
-        
-        
-        <h4 id="nespravna_odpoved">Príkaz <tt>nespravna_odpoved</tt></h4>
-        
-        <p>Príkazom nespravna_odpoved vytvoríš odpoveď na otázku, ktorá sa v danej otázke bude považovať za nesprávnu odpoveď (viď príklad na nasledujúcom obrázku v rámci otázky s jednou správnou odpoveďou):</p>
+        <p>Otázka s jednou správnou odpoveďou je zapísaná nasledovne (prvý parameter je text otázky, druhý počet bodov za otázku):</p>
         <a href="img/nespravnaOdpoved.png"><img style="width: 100%; height: 100%" src="img/nespravnaOdpoved.png"></a>
+                
+        <p>V rámci tejto otázky sa však môže definovať iba jedna správna otázka. Naviac otázka musí mať definovanú aspoň jednu nesprávnu odpoveď. Odpovede definuješ použitím nasledovných príkazov:</p>
+                
+        <p>Príkazom <b>spravna_odpoved</b> vytvoríš odpoveď na otázku, ktorá sa v danej otázke bude považovať za správnu odpoveď.</p>
         
-        <p>Všimni si, ako sú otázky menované v rámci zátvoriek pre príkaz otazka_s_jednou_spravnou_odpovedou a ako sú oddelené čiarkou.</p>
-        
-        <p>Jej jediný parameter je text, ktorý sa pri odpovedi zobrazí (v príklade je to počet rokov).</p>
-        
-        
+        <p>Príkazom <b>nespravna_odpoved</b> vytvoríš odpoveď na otázku, ktorá sa v danej otázke bude považovať za nesprávnu odpoveď. Všimni si, ako sú otázky menované v rámci zátvoriek pre príkaz otazka_s_jednou_spravnou_odpovedou a ako sú oddelené čiarkou.</p>
+     
         
         
         
         
         <h4 id="otazka_s_viacerymi_spravnymi_odpovedami">Príkaz <tt>otazka_s_viacerymi_spravnymi_odpovedami</tt></h4>
         
-        <p>Príkazom otazka_s_viacerymi_spravnymi_odpovedami vytvoríš novú otázku, ktorá má viacero správnych odpovedí (viď príklad na nasledujúcom obrázku, ako môžeš vidieť, dá sa vybrať viacero odpovedí):</p>
+        <p>Príkazom <b>otazka_s_viacerymi_spravnymi_odpovedami</b> vytvoríš novú otázku, ktorá má viacero správnych odpovedí (viď príklad na nasledujúcom obrázku, ako môžeš vidieť, dá sa vybrať viacero odpovedí):</p>
         <a href="img/viacOdpovedPr.png"><img style="width: 100%; height: 100%" src="img/viacOdpovedPr.png"></a>
         
-        <p>Tento príkaz sa používa nasledovne:</p>
+        <p>Tento príkaz sa používa nasledovne (prvý parameter je text otázky, druhý počet bodov za otázku):</p>
         <a href="img/viacOdpoved.png"><img style="width: 100%; height: 100%" src="img/viacOdpoved.png"></a>
-        
-        <p>Aj za týmto príkazom nasledujú parametre ohraničené okrúhlymi zátvorkami a sú oddelené čiarkami.</p>
-        
-        
-        <ol>
-          <li>Prvý parameter je text otázky v úvodzovkách, viď príklad.</li>
-          <li>Druhý parameter je počet bodov za danú otázku (v príklade je to 12 bodov).</li>
-          <li>No a napokon za týmito dvoma parametrami uvádzaš pomocou príkazov <a href="#spravna_odpoved"><tt>spravna_odpoved</tt></a> a <a href="#nespravna_odpoved"><tt>nespravna_odpoved</tt></a> zoznam odpovedí, ktoré sa pri tejto otázke zobrazia.</li>
-        </ol>
-                
+                        
         <p>V rámci tejto otázky musíš definovať aspoň jednu správnu otázku a aspoň jednu nesprávnu. Bodovanie funguje nasledovne. Za vybratie každej správnej odpovede dostaneš podiel zo všetkých bodov za danú otázku (napr. ak počet bodov za otázku je 9, a má 3 správne odpovede, za každú z nich dostaneš po 3 body). Avšak ak vyberieš aj nesprávnu odpoveď, počet bodov za danú otázku sa ti vynuluje.</p>
         
         
@@ -147,62 +103,26 @@
         
         <h4 id="otazka_s_volnou_odpovedou">Príkaz <tt>otazka_s_volnou_odpovedou</tt></h4>
         
-        <p>Príkazom otazka_s_volnou_odpovedou vytvoríš novú otázku, v rámci ktorej je potrebné odpoveď uhádnuť a napísať ju do políčka (viď príklad na nasledujúcom obrázku, ako môžeš vidieť, odpoveď sa vpisuje do textového políčka):</p>
+        <p>Príkazom <b>otazka_s_volnou_odpovedou</b> vytvoríš novú otázku, v rámci ktorej je potrebné odpoveď uhádnuť a napísať ju do políčka (viď príklad na nasledujúcom obrázku, ako môžeš vidieť, odpoveď sa vpisuje do textového políčka):</p>
         <a href="img/volnaOdpovedPr.png"><img style="width: 100%; height: 100%" src="img/volnaOdpovedPr.png"></a>
         
-        <p>Tento typ otázky sa zapisuje nasledovne:</p>
+        <p>Tento typ otázky sa zapisuje nasledovne (prvý parameter je text otázky, druhý počet bodov za otázku, tretí je odpoveď):</p>
         <a href="img/volnaOdpoved.png"><img style="width: 100%; height: 100%" src="img/volnaOdpoved.png"></a>
         
-        <p>Aj za týmto príkazom nasledujú parametre ohraničené okrúhlymi zátvorkami a sú oddelené čiarkami.</p>
-        
-        <ol>
-          <li>Prvý parameter je text otázky v úvodzovkách, viď príklad.</li>
-          <li>Druhý parameter je počet bodov za danú otázku (v príklade je to 20 bodov).</li>
-          <li>Tretí, voliteľný parameter, je hodnota <tt>ANO</tt> alebo <tt>NIE</tt>, ktorá vyjadruje, či sa má brať ohľad na veľkosť písmen alebo nie (ak tento parameter neuvedieš, veľkosť písmen sa neberie do úvahy). Ak sa neberie veľkosť do úvahy, tak napr. pri správnej odpovedi "Mačka" sa uzná aj odpoveď "mačka", alebo "MAČKA", a nie len presne "Mačka".</li>
-          <li>No a napokon za týmito dvoma/troma parametrami uvádzaš pomocou príkazu <a href="#spravna_odpoved"><tt>spravna_odpoved</tt></a> jedinú správnu odpoveď, ktorú je potrebné vpísať do políčka.</li>
-        </ol>
-        
-        <p>V rámci tejto otázky sa definuje iba jedna správna odpoveď - viď príklad.</p>
         
         
         
+        <h4 id="otazka_na_hladanie_parov">Príkaz <tt>otazka_na_hladanie_dvojic</tt></h4>
         
-        <h4 id="otazka_na_hladanie_parov">Príkaz <tt>otazka_na_hladanie_parov</tt></h4>
-        
-        <p>Príkazom otazka_na_hladanie_parov vytvoríš novú otázku, v rámci ktorej je potrebné určiť správne kombinácie dvojíc (ako môžeš vidieť, pre každú hodnotu naľavo potrebuješ vybrať správnu hodnotu napravo):</p>
+        <p>Príkazom <b>otazka_na_hladanie_dvojic</b> vytvoríš novú otázku, v rámci ktorej je potrebné určiť správne kombinácie dvojíc (ako môžeš vidieť, pre každú hodnotu naľavo potrebuješ vybrať správnu hodnotu napravo):</p>
         <a href="img/parOdpovedPr.png"><img style="width: 100%; height: 100%" src="img/parOdpovedPr.png"></a>
         
-        <p>Príklad zápisu tejto otázky je nasledovný:</p>
-        <a href="img/parOdpoved.png"><img style="width: 100%; height: 100%" src="img/parOdpoved.png"></a>
-        
-        <p>Aj za týmto príkazom nasledujú parametre ohraničené okrúhlymi zátvorkami a sú oddelené čiarkami.</p>
-        
-        <ol>
-          <li>Prvý parameter je text otázky v úvodzovkách, viď príklad.</li>
-          <li>Druhý parameter je počet bodov za danú otázku (v príklade je to 20 bodov).</li>
-          <li>No a napokon za týmito dvoma parametrami uvádzaš pomocou príkazu <a href="#dvojica"><tt>dvojica</tt></a> zoznam správne skombinovaných dvojíc.</li>
-        </ol>
-        
-        <p>V rámci tejto otázky sa nedefinuju odpovede - uvádzaš iba dvojice, ktoré je potrebné popárovať.</p>
-        <p>Tento typ otázky sa boduje nasledovne. Za každý správne určený pár získaš podiel zo všetkých bodov. V našom príklade sú 4 dvojice dokopy za 20 bodov, to znamená za každú správne určenú dvojicu získaš 5 bodov (lebo 5 bodov krát 4 otázky je 20 bodov).</p>
-        
-        
-        
-        
-        <h4 id="dvojica">Príkaz <tt>dvojica</tt></h4>
-        
-        <p>Príkazom dvojica vytvoríš novú kombináciu dvoch párov, ktoré je v rámci otázky potrebné nájsť (príklad zobrazenia sme videli pri príkaze <a href="#otazka_na_hladanie_parov"><tt>otazka_na_hladanie_parov</tt></a>):</p>
+        <p>Príklad zápisu tejto otázky je nasledovný (prvý parameter je text otázky, druhý počet bodov za otázku):</p>
         <a href="img/dvojica.png"><img style="width: 100%; height: 100%" src="img/dvojica.png"></a>
         
-        <p>Aj za týmto príkazom nasledujú parametre ohraničené okrúhlymi zátvorkami a sú oddelené čiarkami.</p>
-        
-        <ol>
-          <li>Prvý parameter je text prvého prvku dvojice (zobrazený naľavo).</li>
-          <li>Druhý parameter je text druhého prvku dvojice (zobrazený napravo).</li>
-        </ol>
-        
-        <p>Dvojice definuješ iba v otázke typu otazka_na_hladanie_parov.</p>
-        
+        <p>V rámci tejto otázky sa nedefinuju odpovede - príkazom <b>dvojica</b> uvádzaš iba dvojice, ktoré je potrebné popárovať. Tie sa uvádzajú pomocou príkazu <tt>dvojica</tt></p>
+        <p>Tento typ otázky sa boduje nasledovne. Za každý správne určený pár získaš podiel zo všetkých bodov. V našom príklade sú 4 dvojice dokopy za 20 bodov, to znamená za každú správne určenú dvojicu získaš 5 bodov (lebo 5 bodov krát 4 otázky je 20 bodov).</p>
+                
         
       </div>
     </div>

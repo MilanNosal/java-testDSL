@@ -75,8 +75,8 @@ public class MatchingPairsQuestion extends Question {
         boolean correct = true;
         
         for (Answer a : answers) {
-            errorHandling.reportError(a, new ParsingException("Otázka na hľadanie zodpovedajúcich párov '" + text + "' nemôže mať v sebe definovanú odpoveď '" + 
-                    a.getText()+ "'! Odstráň odpoveď z definície, alebo zmeň typ otázky."));
+            errorHandling.reportError(a, new ParsingException("Pairing question '" + text + "' cannot contain answer '" + 
+                    a.getText()+ "'! Remove it, or change the question type."));
             correct = false;
         }
         
