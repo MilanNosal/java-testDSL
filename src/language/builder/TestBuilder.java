@@ -65,7 +65,7 @@ public abstract class TestBuilder {
     }
     
     /**
-     * Create a new test. You can define its title, minimal points to success, and the list of questions in the test.
+     * Creates a new test. You can define its title, minimal points to success, and the list of questions in the test.
      * If there are no errors in the test definition, the program generates an HTML + JS test and runs it. Otherwise,
      * an error is reported along with a link to the line of code that cause the error.
      * @param title Text in quotation marks that represent the title.
@@ -77,7 +77,7 @@ public abstract class TestBuilder {
     }
     
     /**
-     * Create a single choice question. The question defines multiple answers, but only a single one is correct.
+     * Creates a single choice question. The question defines multiple answers, but only a single one is correct.
      * In the result it is represented by radio buttons.
      * @param text Question text in quotation marks.
      * @param points Positive number of points for the question.
@@ -152,7 +152,7 @@ public abstract class TestBuilder {
     
     /**
      * Create a pair of corresponding items for the pairing question type.
-     * @param firstItem Item to be show to the user.
+     * @param firstItem Item to be shown to the user.
      * @param secondItem Item to be included in the selection list.
      */
     protected void pair(String firstItem, String secondItem) {
