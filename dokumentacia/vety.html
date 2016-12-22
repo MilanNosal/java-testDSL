@@ -1,78 +1,75 @@
 ﻿<!DOCTYPE HTML>
 <html>
-
-<head>
-  <title>Test-it! dokumentácia</title>
-  <meta name="description" content="website description" />
-  <meta name="keywords" content="website keywords, website keywords" />
-  <meta http-equiv="content-type" content="text/html; charset=windows-1250" />
-  <link rel="stylesheet" type="text/css" href="style/style.css" />
-</head>
-
-<body>
-  <div id="main">
-    <div id="header">
-      <div id="logo">
-        <!-- class="logo_colour", allows you to change the colour of the text -->
-        <h1><a href="index.html">Test<span class="logo_colour">-it!</span></a></h1>
-        <h2>Dokumentácia jazyka Test-it! na vytváranie interaktívnych testov.</h2>
-      </div>
-      <div id="menubar">
-        <ul id="menu">
-          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
-          <li><a href="index.html">Úvod</a></li>
-          <li class="selected"><a href="vety.html">Vytvorenie vety</a></li>
-          <li><a href="jazyk.html">Časti jazyka</a></li>
-          <li><a href="spustanie.html">Spúšťanie</a></li>
-          <li><a href="prostredie.html">Prostredie</a></li>
-        </ul>
-      </div>
-    </div>
-    <div id="site_content">
-      <div class="sidebar">
-        <h1>TUKE</h1>
-        <h4>Technická Univerzita v Košiciach</h4>
-        <h5>Katedra Počítačov a Informatiky (KPI)</h5>
-        <p>Jazyk Test-it! je prototypický formálny jazyk vytvorený za účelom experimentu v oblasti interných doménovo-špecifických jazykov.
-        Aj keď bol jazyk vytvorený v rámci nášho výskumu, je zároven ukážkou toho, čo dokážu už počas štúdia vytvorit aj naši študenti - ak sa ti to teda páči, neváhaj a navštív nasledujúce linky.</p>
-        <ul>
-          <li><a href="https://kpi.fei.tuke.sk/" target="_blank">Navštív stránku Katedry Počítačov a Informatiky</a></li>
-          <li><a href="https://www.youtube.com/channel/UCcJFOmxCzDqIeF76SKw_dnQ" target="_blank">Sleduj náš YouTube kanál</a></li>
-          <li><a href="https://www.facebook.com/kpi.fei.tuke/" target="_blank">Alebo nás lajkni na Facebooku!</a></li>
-        </ul>
-      </div>
+    
+    <head>
+        <title>Test-it! documentation</title>
+        <meta name="description" content="website description" />
+        <meta name="keywords" content="website keywords, website keywords" />
+        <meta http-equiv="content-type" content="text/html; charset=windows-1250" />
+        <link rel="stylesheet" type="text/css" href="style/style.css" />
+    </head>
+    
+    <body>
+        <div id="main">
+            <div id="header">
+                <div id="logo">
+                    <!-- class="logo_colour", allows you to change the colour of the text -->
+                    <h1><a href="index.html">Test<span class="logo_colour">-it!</span></a></h1>
+                    <h2>Test-it! language documentation.</h2>
+                </div>
+                <div id="menubar">
+                    <ul id="menu">
+                        <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+                        <li><a href="index.html">Introduction</a></li>
+                        <li class="selected"><a href="vety.html">Sentence creation</a></li>
+                        <li><a href="jazyk.html">Language commands</a></li>
+                        <li><a href="spustanie.html">Running</a></li>
+                        <li><a href="prostredie.html">Environment</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="site_content">
+                <div class="sidebar">
+                    <h1>TUKE</h1>
+                    <h4>Technical University of Košice</h4>
+                    <h5>Department of Computers and Informatics</h5>
+                    <p>Test-it! language is a prototype formal language designed for an experimenting in the field of internal domain-specific languages.</p>
+                    <ul>
+                        <li><a href="https://kpi.fei.tuke.sk/" target="_blank">Department website</a></li>
+                        <li><a href="https://www.youtube.com/channel/UCcJFOmxCzDqIeF76SKw_dnQ" target="_blank">Our Youtube channel</a></li>
+                        <li><a href="https://www.facebook.com/kpi.fei.tuke/" target="_blank">Like us on Facebook</a></li>
+                    </ul>
+                </div>
       
       <div id="content">
-        <h1>Vytvorenie prvého testu</h1>
+        <h1>Creating your first test</h1>
         
-        <p>Najzákladnejším krokom je vytvorenie prvej vety v jazyku Test-it!, ktorá ti umožní vytvoriť svoj prvý test.</p>
+        <h4>Running the editor</h4>
         
-        <h4>Spustenie prostredia</h4>
-        
-        <p>Pracovať budeš s prostredím (editorom) NetBeans. Spusti ho dvojklikom na odkaz na ploche. Po otvorení sa ti ukáže okno ako je znázornené na nasledujúcom obrázku. V ňom ťa budú zaujímať najmä plocha vľavo hore, ktorá ma nadpis "Projects", plocha vpravo dole "Output", a napokon najväčšia plocha vpravo hore. Do okna Projects budeš vytvárať nové súbory s definíciou testov, v okne Output sa budú vypisovať chybové hlášky (len ak niečo pokazíš), a napokon v tom najväčšom priestore sa ti otvorí súbor pre zápis testu.</p>
+        <p>You will be working with the NetBeans environment. If it is not already open, run it by doubleclick on its icon on the desktop. You should see the window that is shown on the following figure. Take note of the view on the top left with the "Projects" title, then the "Output" view on the right bottom, and finally the largest view on the right top - the editor. In the "Projects" view you can create new files with the tests, in the "Output" window you can see if there are any error messages (only if you do a mistake), and in the editor view you will see and edit the test.</p>
         
         <a href="img/nb.png"><img style="width: 100%; height: 100%" src="img/nb.png"></a>
         
-        <h4>Nový test</h4>
+        <h4>New test</h4>
         
-        <p>Nový test vytvoríš nasledovným postupom:</p>
+        <p>You can create a new test in a following way:</p>
         <ol>
-          <li>V časti Projects rozbaľ priečinok TestDSLJava, v ňom priečinok Source Packages, a pravým tlačidlom klikni na priečink test
+          <li>In the Projects view expand the TestDSLJava folder, in it expand Source Packages folder and right-click on the test folder
           <a href="img/nb0.png"><img style="width: 85%; height: 85%" src="img/nb0.png"></a></li>
-          <li>V menu, ktoré sa zobrazí, vyber New/Other
+          <li>in the menu that pops out select New/Other
           <a href="img/nb1.png"><img style="width: 70%; height: 70%" src="img/nb1.png"></a>
           </li>
-          <li>V okne, ktoré sa zobrazí, vyber kategóriu DSL a v nej položku Test-it! a klikni na Next
+          <li>In the wizard window select the DSL category and its item Test-it! and click Next
           <a href="img/nb2.png"><img style="width: 90%; height: 90%" src="img/nb2.png"></a>
           </li>
-          <li>V ďalšom okne do políčka File Name vyplň názov súboru (bez medzier, napr. 'NovyTest'), a klikni na tlačidlo Finish.
+          <li>In the next window fill the File Name with the name of the file to be created (without spaces, e.g. 'NewTest'), and click Finish.
           <a href="img/nb3.png"><img style="width: 90%; height: 90%" src="img/nb3.png"></a></li>
         </ol>
         
-        <p>Po splnení týchto krokov sa ti v hlavnom pohľade otvorí nový súbor so vzorovou kostrou na test (všimni si, že v okienku Projects v priečinku test vznikol nový súbor s názvom NovyTest a príponou .java).</p>
+        <p>After these steps the main editor view opens a new file with a skeleton of a sample test (notice that in the Projects view test folder a new file was created).</p>
         <a href="img/novyTest.png"><img style="width: 100%; height: 100%" src="img/novyTest.png"></a>
         
-        <p>Daný súbor môžeš editovať a tak alebo meniť vzorový test, alebo vytvoriť úplne nový. V <a href="jazyk.html">ďalšej časti</a> sa pozrieme na to, čo vieš v jazyku písať.</p>
+        <p>The created file can be edited to change the sample test to a wanted one, or you can delete the sample and write the test from the scratch. In <a href="jazyk.html">next section</a> I will discuss more about what you can use to define the test.</p>
       </div>
     </div>
     <div id="footer">

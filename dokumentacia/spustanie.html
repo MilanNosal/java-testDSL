@@ -1,53 +1,55 @@
 ﻿<!DOCTYPE HTML>
 <html>
-
-<head>
-  <title>Test-it! dokumentácia</title>
-  <meta name="description" content="website description" />
-  <meta name="keywords" content="website keywords, website keywords" />
-  <meta http-equiv="content-type" content="text/html; charset=windows-1250" />
-  <link rel="stylesheet" type="text/css" href="style/style.css" />
-</head>
-
-<body>
-  <div id="main">
-    <div id="header">
-      <div id="logo">
-        <!-- class="logo_colour", allows you to change the colour of the text -->
-        <h1><a href="index.html">Test<span class="logo_colour">-it!</span></a></h1>
-        <h2>Dokumentácia jazyka Test-it! na vytváranie interaktívnych testov.</h2>
-      </div>
-      <div id="menubar">
-        <ul id="menu">
-          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
-          <li><a href="index.html">Úvod</a></li>
-          <li><a href="vety.html">Vytvorenie vety</a></li>
-          <li><a href="jazyk.html">Časti jazyka</a></li>
-          <li class="selected"><a href="spustanie.html">Spúšťanie</a></li>
-          <li><a href="prostredie.html">Prostredie</a></li>
-        </ul>
-      </div>
-    </div>
-    <div id="site_content">
-      <div class="sidebar">
-        <h1>TUKE</h1>
-        <h4>Technická Univerzita v Košiciach</h4>
-        <h5>Katedra Počítačov a Informatiky (KPI)</h5>
-        <p>Jazyk Test-it! je prototypický formálny jazyk vytvorený za účelom experimentu v oblasti interných doménovo-špecifických jazykov.
-        Aj keď bol jazyk vytvorený v rámci nášho výskumu, je zároven ukážkou toho, čo dokážu už počas štúdia vytvorit aj naši študenti - ak sa ti to teda páči, neváhaj a navštív nasledujúce linky.</p>
-        <ul>
-          <li><a href="https://kpi.fei.tuke.sk/" target="_blank">Navštív stránku Katedry Počítačov a Informatiky</a></li>
-          <li><a href="https://www.youtube.com/channel/UCcJFOmxCzDqIeF76SKw_dnQ" target="_blank">Sleduj náš YouTube kanál</a></li>
-          <li><a href="https://www.facebook.com/kpi.fei.tuke/" target="_blank">Alebo nás lajkni na Facebooku!</a></li>
-        </ul>
-      </div>
+    
+    <head>
+        <title>Test-it! documentation</title>
+        <meta name="description" content="website description" />
+        <meta name="keywords" content="website keywords, website keywords" />
+        <meta http-equiv="content-type" content="text/html; charset=windows-1250" />
+        <link rel="stylesheet" type="text/css" href="style/style.css" />
+    </head>
+    
+    <body>
+        <div id="main">
+            <div id="header">
+                <div id="logo">
+                    <!-- class="logo_colour", allows you to change the colour of the text -->
+                    <h1><a href="index.html">Test<span class="logo_colour">-it!</span></a></h1>
+                    <h2>Test-it! language documentation.</h2>
+                </div>
+                <div id="menubar">
+                    <ul id="menu">
+                        <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+                        <li><a href="index.html">Introduction</a></li>
+                        <li><a href="vety.html">Sentence creation</a></li>
+                        <li><a href="jazyk.html">Language commands</a></li>
+                        <li class="selected"><a href="spustanie.html">Running</a></li>
+                        <li><a href="prostredie.html">Environment</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="site_content">
+                <div class="sidebar">
+                    <h1>TUKE</h1>
+                    <h4>Technical University of Košice</h4>
+                    <h5>Department of Computers and Informatics</h5>
+                    <p>Test-it! language is a prototype formal language designed for an experimenting in the field of internal domain-specific languages.</p>
+                    <ul>
+                        <li><a href="https://kpi.fei.tuke.sk/" target="_blank">Department website</a></li>
+                        <li><a href="https://www.youtube.com/channel/UCcJFOmxCzDqIeF76SKw_dnQ" target="_blank">Our Youtube channel</a></li>
+                        <li><a href="https://www.facebook.com/kpi.fei.tuke/" target="_blank">Like us on Facebook</a></li>
+                    </ul>
+                </div>
+                
       
       <div id="content">
-        <h1>Spúšťanie vytvoreného testu</h1>
+        <h1>How to run the test</h1>
         
-        <p>Spustenie testu v rámci prostredia NetBeans je veľmi jednoduché. Tak ako je napísané aj v komentári v kostre definície testu (viď proces <a href="vety.html">vytvorenia nového testu</a>), keď je súbor s testom otvorený, test spustíš stlačením kláves Shift + F6.</p>
         
-        <p>Ako je spomenuté v časti <a href="prostredie.html">Prostredie</a>, ak sú v definícii nejaké chyby, namiesto spustenia testu sa vpravo dole v okne Output zobrazí zoznam chýb, ktoré je potrebné opraviť.</p>
+        <p>Running the test in the NetBeans is very simple. As it is written in the comment in the skeleton generated by NetBeans (see <a href="vety.html">new test creation</a> section), when the file with the test is open, you run it by pressing Shift + F6.</p>
+        
+        <p>As section <a href="prostredie.html">Environment</a> mentions, if there are any errors in the test definition, instead of running the test the environment will present a list of errors in the view "Output". The errors have to be fixed for the test to be run.</p>
+        
       </div>
     </div>
     <div id="footer">

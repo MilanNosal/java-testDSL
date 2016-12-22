@@ -1,74 +1,75 @@
 ﻿<!DOCTYPE HTML>
 <html>
-
-<head>
-  <title>Test-it! dokumentácia</title>
-  <meta name="description" content="website description" />
-  <meta name="keywords" content="website keywords, website keywords" />
-  <meta http-equiv="content-type" content="text/html; charset=windows-1250" />
-  <link rel="stylesheet" type="text/css" href="style/style.css" />
-</head>
-
-<body>
-  <div id="main">
-    <div id="header">
-      <div id="logo">
-        <!-- class="logo_colour", allows you to change the colour of the text -->
-        <h1><a href="index.html">Test<span class="logo_colour">-it!</span></a></h1>
-        <h2>Dokumentácia jazyka Test-it! na vytváranie interaktívnych testov.</h2>
-      </div>
-      <div id="menubar">
-        <ul id="menu">
-          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
-          <li><a href="index.html">Úvod</a></li>
-          <li><a href="vety.html">Vytvorenie vety</a></li>
-          <li><a href="jazyk.html">Časti jazyka</a></li>
-          <li><a href="spustanie.html">Spúšťanie</a></li>
-          <li class="selected"><a href="prostredie.html">Prostredie</a></li>
-        </ul>
-      </div>
-    </div>
-    <div id="site_content">
-      <div class="sidebar">
-        <h1>TUKE</h1>
-        <h4>Technická Univerzita v Košiciach</h4>
-        <h5>Katedra Počítačov a Informatiky (KPI)</h5>
-        <p>Jazyk Test-it! je prototypický formálny jazyk vytvorený za účelom experimentu v oblasti interných doménovo-špecifických jazykov.
-        Aj keď bol jazyk vytvorený v rámci nášho výskumu, je zároven ukážkou toho, čo dokážu už počas štúdia vytvorit aj naši študenti - ak sa ti to teda páči, neváhaj a navštív nasledujúce linky.</p>
-        <ul>
-          <li><a href="https://kpi.fei.tuke.sk/" target="_blank">Navštív stránku Katedry Počítačov a Informatiky</a></li>
-          <li><a href="https://www.youtube.com/channel/UCcJFOmxCzDqIeF76SKw_dnQ" target="_blank">Sleduj náš YouTube kanál</a></li>
-          <li><a href="https://www.facebook.com/kpi.fei.tuke/" target="_blank">Alebo nás lajkni na Facebooku!</a></li>
-        </ul>
-      </div>
-      
+    
+    <head>
+        <title>Test-it! documentation</title>
+        <meta name="description" content="website description" />
+        <meta name="keywords" content="website keywords, website keywords" />
+        <meta http-equiv="content-type" content="text/html; charset=windows-1250" />
+        <link rel="stylesheet" type="text/css" href="style/style.css" />
+    </head>
+    
+    <body>
+        <div id="main">
+            <div id="header">
+                <div id="logo">
+                    <!-- class="logo_colour", allows you to change the colour of the text -->
+                    <h1><a href="index.html">Test<span class="logo_colour">-it!</span></a></h1>
+                    <h2>Test-it! language documentation.</h2>
+                </div>
+                <div id="menubar">
+                    <ul id="menu">
+                        <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+                        <li><a href="index.html">Introduction</a></li>
+                        <li><a href="vety.html">Sentence creation</a></li>
+                        <li><a href="jazyk.html">Language commands</a></li>
+                        <li><a href="spustanie.html">Running</a></li>
+                        <li class="selected"><a href="prostredie.html">Environment</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="site_content">
+                <div class="sidebar">
+                    <h1>TUKE</h1>
+                    <h4>Technical University of Košice</h4>
+                    <h5>Department of Computers and Informatics</h5>
+                    <p>Test-it! language is a prototype formal language designed for an experimenting in the field of internal domain-specific languages.</p>
+                    <ul>
+                        <li><a href="https://kpi.fei.tuke.sk/" target="_blank">Department website</a></li>
+                        <li><a href="https://www.youtube.com/channel/UCcJFOmxCzDqIeF76SKw_dnQ" target="_blank">Our Youtube channel</a></li>
+                        <li><a href="https://www.facebook.com/kpi.fei.tuke/" target="_blank">Like us on Facebook</a></li>
+                    </ul>
+                </div>
+                
       <div id="content">
-        <h1>Prostredie NetBeans</h1>
-        
-        <p>V časti <a href="vety.html">Vytvorenie vety</a> sme už videli ako vieme využiť prostredie NetBeans na vytvorenie nového testu. V tejto časti si ukážeme ešte niekoľko skvelých funkcií, ktoré môžeš pri tvorbe testu využiť.</p>
-        
-        <h4>Dopĺňanie kódu</h4>
-        
-        <p>Jedným z mocných nástrojov prostredí je dopĺňanie kódu. V jazyku Test-it! ti táto funkcionalita umožní písať definíciu oveľa rýchlejšie a spoľahlivejšie. Keď začneš písať nejaký príkaz, stlačením kombinácie <b>Ctrl + Medzerovník</b> ti prostredie vyroluje ponuku s možnosťami, ktoré sa na dané miesto hodia, viď nasledujúci príklad (začal som písať slovo "ot", teda otazka):</p>
+          <h1>NetBeans Environment</h1>
+          
+          <p>Section <a href="vety.html">Creating new test</a> we saw how to work in NetBeans to create a new test. In this section we will take a look at some awesome features that can be used during creating the test.</p>
+          
+          <h4>Code completion</h4>
+          
+          <p>One of the most powerful features of the editor is code completion. In the Test-it! language you can use this feature to define the test faster and more reliably. When a typing cursor is on a place, where a command should be used, you can press <b>Ctrl + Space</b> to have the editor present a menu with options that can be typed in that place. For example, see following figure where I started to type in the begining of the command for question (in Slovak question is 'otazka').</p>
         
         <a href="img/cc.png"><img style="width: 100%; height: 100%" src="img/cc.png"></a>
         
         
-        <p>Naviac pri prezeraní ponúkaných možnosti (šípkami hore a dole) prostredie ukazuje aj dokumentáciu k daným príkazom (modrý rámček).</p>
+        <p>Moreover if you browse the options using up and down arrows the editor shows also the documentation to the given command (blue rectangle).</p>
         
-        <p>Vybranie jednej z ponúkaných možností potvrdíš stlačením klávesy Enter alebo klikom. Po tom prostredie vygeneruje použitie vybraného príkazu ako je to vidieť na nasledujúcom obrázku (vybral som príkaz otazka_s_jednou_spravnou_odpovedou):</p>
+        <p>Selecting an option can be confirmed pressing an Enter keyboard button or clicking a selected command. After that the editor generates a usage skeleton of the given command as you can see in following figure (I selected single choice question - 'otazka_s_jednou_spravnou_odpovedou' in Slovak):</p>
         <a href="img/cc2.png"><img style="width: 100%; height: 100%" src="img/cc2.png"></a>
         
-        <p>V tých zátvorkách môžeš vidiet návrh parametrov, text otázky, ten je potrebný prepísať s použitím úvodzoviek, a počet bodov je vygenerovaný na nulu.</p>
+        <p>In the generated parentheses you can see placeholders for parameters - question text that has to be typed in, and the points for the question defaulted to 0.</p>
         
-        <p><b>Pozor na zátvorky!</b> Tento jazyk je citlivý na správne použitie zátvoriek - ak nejakú zátvorku otvoríš (uvedieš zátvorku "("), musíš ju aj uzavrieť (použiť jej párovú zátvorku ")"). Prostredie ti tie zátvorky pekne generuje, ale dávaj si pozor aby si ich nezmazal (alebo neumiestnil zle), lebo tým môžeš test pokaziť a prostredie ho nebude schopné porozumieť.</p>
+        <p><b>Be careful about parentheses!</b> The language is sensitive to correct usage of parentheses - if you open a parenthesis (you use a left parenthesis '('), you have to close it as well (use it pair right parenthesis ')'). The editor generates parentheses pairs nicely, but be careful not to delete one, or misplace them, because that can mess up the test definition.</p>
         
-        <h4>Podpora chýb</h4>
+        <h4>Error support</h4>
         
-        <p>Nedodržanie niektorých pravidiel pre písanie testov môže spôsobiť chybu a test sa nebude dať spustiť. V takom prípade prostredie chybu ohlási. Vezmime si príklad, že omylom definujeme dve správne odpovede v otázke s jednou správnou odpoveďou. V takom prípade sa pri pokuse o spustenie testu vypíše nasledovná chyba:</p>
-        <a href="img/errors.png"><img style="width: 100%; height: 100%" src="img/errors.png"></a>
+        <p>If you do not keep all the rules for test definition, an error wil occur and the test will not be runnable. In such a case an error is reported by the editor. For example, we might by accident define two correct answer options in a single choice question. In this case if we would try to run the test we would get following error saying that there cannot be another correct answer option ('spravna_odpoved' in Slovak) in a single choice question ('otazka_s_jednou_spravnou_odpovedou' in Slovak):</p>
         
-        <p>Ako vidíme, vytvorí sa tiež klikateľný odkaz, ktorý nastaví kurzor na riadok, v ktorom je chyba. V tomto prípade samotná chyba oznamuje, že takýto typ otázky nemôže mať viacero správnych odpovedí, a že možné riešenie je zmazať správnu odpoveď na riadku 18, to jest odpoveď "31 rokov". Vďaka týmto klikateľným odkazom môžeš okamžite identifikovať miesto chyby a rýchlejšie danú chybu odstrániť.</p>
+        <a href="img/errors.png"><img style="width: 100%; height: 100%" src="img/errors.png"/></a>
+        
+        <p> As you can see, the environment provides a clickable navigation link that puts cursor on the line with the error. The error description thus specifies the line in which the error was detected, and what is the error about. It also suggests possible solution (in this case removing the second correct option, or changing the question type to a one that supports mutliple correct answers). A clickable link helps you to identify the erroneous line faster.</p>
+
       </div>
     </div>
     <div id="footer">

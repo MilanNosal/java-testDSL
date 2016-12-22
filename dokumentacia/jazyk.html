@@ -1,127 +1,127 @@
 ﻿<!DOCTYPE HTML>
 <html>
-
-<head>
-  <title>Test-it! dokumentácia</title>
-  <meta name="description" content="website description" />
-  <meta name="keywords" content="website keywords, website keywords" />
-  <meta http-equiv="content-type" content="text/html; charset=windows-1250" />
-  <link rel="stylesheet" type="text/css" href="style/style.css" />
-</head>
-
-<body>
-  <div id="main">
-    <div id="header">
-      <div id="logo">
-        <!-- class="logo_colour", allows you to change the colour of the text -->
-        <h1><a href="index.html">Test<span class="logo_colour">-it!</span></a></h1>
-        <h2>Dokumentácia jazyka Test-it! na vytváranie interaktívnych testov.</h2>
-      </div>
-      <div id="menubar">
-        <ul id="menu">
-          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
-          <li><a href="index.html">Úvod</a></li>
-          <li><a href="vety.html">Vytvorenie vety</a></li>
-          <li class="selected"><a href="jazyk.html">Časti jazyka</a></li>
-          <li><a href="spustanie.html">Spúšťanie</a></li>
-          <li><a href="prostredie.html">Prostredie</a></li>
-        </ul>
-      </div>
-    </div>
-    <div id="site_content">
-      <div class="sidebar">
-        <h1>TUKE</h1>
-        <h4>Technická Univerzita v Košiciach</h4>
-        <h5>Katedra Počítačov a Informatiky (KPI)</h5>
-        <p>Jazyk Test-it! je prototypický formálny jazyk vytvorený za účelom experimentu v oblasti interných doménovo-špecifických jazykov.
-        Aj keď bol jazyk vytvorený v rámci nášho výskumu, je zároven ukážkou toho, čo dokážu už počas štúdia vytvorit aj naši študenti - ak sa ti to teda páči, neváhaj a navštív nasledujúce linky.</p>
-        <ul>
-          <li><a href="https://kpi.fei.tuke.sk/" target="_blank">Navštív stránku Katedry Počítačov a Informatiky</a></li>
-          <li><a href="https://www.youtube.com/channel/UCcJFOmxCzDqIeF76SKw_dnQ" target="_blank">Sleduj náš YouTube kanál</a></li>
-          <li><a href="https://www.facebook.com/kpi.fei.tuke/" target="_blank">Alebo nás lajkni na Facebooku!</a></li>
-        </ul>
-      </div>
+    
+    <head>
+        <title>Test-it! documentation</title>
+        <meta name="description" content="website description" />
+        <meta name="keywords" content="website keywords, website keywords" />
+        <meta http-equiv="content-type" content="text/html; charset=windows-1250" />
+        <link rel="stylesheet" type="text/css" href="style/style.css" />
+    </head>
+    
+    <body>
+        <div id="main">
+            <div id="header">
+                <div id="logo">
+                    <!-- class="logo_colour", allows you to change the colour of the text -->
+                    <h1><a href="index.html">Test<span class="logo_colour">-it!</span></a></h1>
+                    <h2>Test-it! language documentation.</h2>
+                </div>
+                <div id="menubar">
+                    <ul id="menu">
+                        <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+                        <li><a href="index.html">Introduction</a></li>
+                        <li><a href="vety.html">Sentence creation</a></li>
+                        <li class="selected"><a href="jazyk.html">Language commands</a></li>
+                        <li><a href="spustanie.html">Running</a></li>
+                        <li><a href="prostredie.html">Environment</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="site_content">
+                <div class="sidebar">
+                    <h1>TUKE</h1>
+                    <h4>Technical University of Košice</h4>
+                    <h5>Department of Computers and Informatics</h5>
+                    <p>Test-it! language is a prototype formal language designed for an experimenting in the field of internal domain-specific languages.</p>
+                    <ul>
+                        <li><a href="https://kpi.fei.tuke.sk/" target="_blank">Department website</a></li>
+                        <li><a href="https://www.youtube.com/channel/UCcJFOmxCzDqIeF76SKw_dnQ" target="_blank">Our Youtube channel</a></li>
+                        <li><a href="https://www.facebook.com/kpi.fei.tuke/" target="_blank">Like us on Facebook</a></li>
+                    </ul>
+                </div>
       
       <div id="content">
-        <h1>Časti jazyka - ako definovať testy</h1>
+        <h1>Language commands - how to define tests</h1>
         
-        <p>V jazyku môžeš používať niekoľko základných príkazov. V tejto časti si ich predstavíme a vysvetlíme si ich význam.</p>
+        <p>The languages provides you with several commands. In this section I will introduce these commands and explain their meaning.</p>
         <ul>
-          <li><a href="#test">Príkaz <tt>vytvor_test</tt></a></li>
-          <li><a href="#otazka_s_jednou_spravnou_odpovedou">Príkaz <tt>otazka_s_jednou_spravnou_odpovedou</tt></a></li>
-          <li><a href="#otazka_s_viacerymi_spravnymi_odpovedami">Príkaz <tt>otazka_s_viacerymi_spravnymi_odpovedami</tt></a></li>
-          <li><a href="#otazka_s_volnou_odpovedou">Príkaz <tt>otazka_s_volnou_odpovedou</tt></a></li>
-          <li><a href="#otazka_na_hladanie_parov">Príkaz <tt>otazka_na_hladanie_dvojic</tt></a></li>
+          <li><a href="#test"><tt>create_test</tt> command</a></li>
+          <li><a href="#otazka_s_jednou_spravnou_odpovedou"><tt>single_choice_question</tt> command</a></li>
+          <li><a href="#otazka_s_viacerymi_spravnymi_odpovedami"> <tt>multiple_choice_question</tt> command</a></li>
+          <li><a href="#otazka_s_volnou_odpovedou"> <tt>open_answer_question</tt> command</a></li>
+          <li><a href="#otazka_na_hladanie_parov"> <tt>pairing_question</tt> command</a></li>
         </ul>
         
-        <p>Každý príkaz píš na nový riadok (a nezabudni za neho dať bodkočiarku).</p>
+        <p>Every command has to be written on a new line, and it has to be ended with a semicolon.</p>
         
         
         
         
-        <h4 id="test">Príkaz <tt>vytvor_test</tt></h4>
+        <h4 id="test"><tt>create_test</tt> command</h4>
         
-        <p>Príkaz <b>vytvor_test</b> je základný príkaz, ktorý vytvorí samotný test. Tento príkaz napíšeš v jednom súbore len raz - ten totiž vytvorí jeden test. Príklad použitia tohto príkazu môžeš vidieť na nasledujúcom obrázku. Napíšeš slovo vytvor_test a potom v okrúhlych zátvorkách uvedieš jeho parametre oddelené čiarkami - prvý parameter je názov testu, a druhý minimálny počet bodov potrebný na úspech.</p>
+        <p><b>create_test</b> command is used to create a test. This command is used in a single file only once - it creates a single test (definition of multiple tests in a single file is not supported). Example of this command is presented in following figure. You type create_test and after that in the parentheses you include its parameters delimited by commas - first parameter is the test title, and the second one is the minimal points for successful test pass.</p>
         
         <a href="img/test.png"><img style="width: 100%; height: 100%" src="img/test.png"></a>
                 
-        <p>Za týmto príkazom uvádzaš pomocou nasledujúcich príkazov zoznam otázok (otázky sú od seba opäť oddelené čiarkou), ktoré majú v teste byť.</p>
+        <p>After this command you use following commands to create a list of questions that belong to the test.</p>
                 
         
         
         
-        <h4 id="otazka_s_jednou_spravnou_odpovedou">Príkaz <tt>otazka_s_jednou_spravnou_odpovedou</tt></h4>
+        <h4 id="otazka_s_jednou_spravnou_odpovedou"><tt>single_choice_question</tt> command</h4>
         
-        <p>Príkazom <b>otazka_s_jednou_spravnou_odpovedou</b> vytvoríš novú otázku, ktorá má len jednu správnu odpoveď (viď príklad na nasledujúcom obrázku):</p>
+        <p><b>single_choice_question</b> command creates a question with a single correct option (see example in the following figure):</p>
         <a href="img/jednaOdpovedPr.png"><img style="width: 100%; height: 100%" src="img/jednaOdpovedPr.png"></a>
         
-        <p>Otázka s jednou správnou odpoveďou je zapísaná nasledovne (prvý parameter je text otázky, druhý počet bodov za otázku):</p>
+        <p>A single choice question is defined as follows (first parameter is the question text, second parameter are the points for the question):</p>
         <a href="img/nespravnaOdpoved.png"><img style="width: 100%; height: 100%" src="img/nespravnaOdpoved.png"></a>
                 
-        <p>V rámci tejto otázky sa však môže definovať iba jedna správna otázka. Naviac otázka musí mať definovanú aspoň jednu nesprávnu odpoveď. Odpovede definuješ použitím nasledovných príkazov:</p>
+        <p>In this question type you can provide only a single correct option. Moreover, the question has to have also at least a one incorrect option. Options for answers are defined using following commands:</p>
                 
-        <p>Príkazom <b>spravna_odpoved</b> vytvoríš odpoveď na otázku, ktorá sa v danej otázke bude považovať za správnu odpoveď.</p>
+        <p><b>correct_answer</b> command defines a correct answer/option for the given question.</p>
         
-        <p>Príkazom <b>nespravna_odpoved</b> vytvoríš odpoveď na otázku, ktorá sa v danej otázke bude považovať za nesprávnu odpoveď. Všimni si, ako sú otázky menované v rámci zátvoriek pre príkaz otazka_s_jednou_spravnou_odpovedou a ako sú oddelené čiarkou.</p>
+        <p><b>incorrect_answer</b> command defines an incorrect answer/option.</p>
      
         
         
         
         
-        <h4 id="otazka_s_viacerymi_spravnymi_odpovedami">Príkaz <tt>otazka_s_viacerymi_spravnymi_odpovedami</tt></h4>
+        <h4 id="otazka_s_viacerymi_spravnymi_odpovedami"><tt>multiple_choice_question</tt> command</h4>
         
-        <p>Príkazom <b>otazka_s_viacerymi_spravnymi_odpovedami</b> vytvoríš novú otázku, ktorá má viacero správnych odpovedí (viď príklad na nasledujúcom obrázku, ako môžeš vidieť, dá sa vybrať viacero odpovedí):</p>
+        <p><b>multiple_choice_question</b> command serves for creating a question with multiple correct answers (see example in the following figure, the question uses checkboxes to allow selection of multiple answers):</p>
         <a href="img/viacOdpovedPr.png"><img style="width: 100%; height: 100%" src="img/viacOdpovedPr.png"></a>
         
-        <p>Tento príkaz sa používa nasledovne (prvý parameter je text otázky, druhý počet bodov za otázku):</p>
+        <p>The command is used as follows (first parameter defines the text of the question, the second parameter defines the number of points for the question):</p>
         <a href="img/viacOdpoved.png"><img style="width: 100%; height: 100%" src="img/viacOdpoved.png"></a>
-                        
-        <p>V rámci tejto otázky musíš definovať aspoň jednu správnu otázku a aspoň jednu nesprávnu. Bodovanie funguje nasledovne. Za vybratie každej správnej odpovede dostaneš podiel zo všetkých bodov za danú otázku (napr. ak počet bodov za otázku je 9, a má 3 správne odpovede, za každú z nich dostaneš po 3 body). Avšak ak vyberieš aj nesprávnu odpoveď, počet bodov za danú otázku sa ti vynuluje.</p>
+        
+        <p>In this question type you have to provide at least one correct answer option, and at leat one incorrect answer option. Points are awarded according to the following system. For each correctly selected answer you are awarded a proprotion of the full points available for the given question (e.g., if there are 9 points for the question, and there are 3 correct answers, each correct answer is worth 3 points). If you select also an incorrect answer (even only one), you will get 0 points.</p>
         
         
         
         
-        <h4 id="otazka_s_volnou_odpovedou">Príkaz <tt>otazka_s_volnou_odpovedou</tt></h4>
+        <h4 id="otazka_s_volnou_odpovedou"><tt>open_answer_question</tt> command</h4>
         
-        <p>Príkazom <b>otazka_s_volnou_odpovedou</b> vytvoríš novú otázku, v rámci ktorej je potrebné odpoveď uhádnuť a napísať ju do políčka (viď príklad na nasledujúcom obrázku, ako môžeš vidieť, odpoveď sa vpisuje do textového políčka):</p>
+        <p><b>open_answer_question</b> command serves to create a question where a tested subject has to type in the answer into a text field - there are no options offered (see example in the following figure):</p>
         <a href="img/volnaOdpovedPr.png"><img style="width: 100%; height: 100%" src="img/volnaOdpovedPr.png"></a>
         
-        <p>Tento typ otázky sa zapisuje nasledovne (prvý parameter je text otázky, druhý počet bodov za otázku, tretí je odpoveď):</p>
+        <p>Example of defining this question type is following (first parameter is the question text, second parameter are the points for the question, the third one is the expected correct answer):</p>
         <a href="img/volnaOdpoved.png"><img style="width: 100%; height: 100%" src="img/volnaOdpoved.png"></a>
         
         
         
         
-        <h4 id="otazka_na_hladanie_parov">Príkaz <tt>otazka_na_hladanie_dvojic</tt></h4>
+        <h4 id="otazka_na_hladanie_parov"><tt>pairing_question</tt> command</h4>
         
-        <p>Príkazom <b>otazka_na_hladanie_dvojic</b> vytvoríš novú otázku, v rámci ktorej je potrebné určiť správne kombinácie dvojíc (ako môžeš vidieť, pre každú hodnotu naľavo potrebuješ vybrať správnu hodnotu napravo):</p>
+        <p><b>pairing_question</b> command serves for creating a question in which the tested subject has to correctly pair up provided keywords (as you can see in the following example, for each value on the left you have to find a correct value on the right):</p>
         <a href="img/parOdpovedPr.png"><img style="width: 100%; height: 100%" src="img/parOdpovedPr.png"></a>
         
-        <p>Príklad zápisu tejto otázky je nasledovný (prvý parameter je text otázky, druhý počet bodov za otázku):</p>
+        <p>Example of this question type definition follows (first parameter is the text question, the second one are the points for the question):</p>
         <a href="img/dvojica.png"><img style="width: 100%; height: 100%" src="img/dvojica.png"></a>
         
-        <p>V rámci tejto otázky sa nedefinuju odpovede - príkazom <b>dvojica</b> uvádzaš iba dvojice, ktoré je potrebné popárovať. Tie sa uvádzajú pomocou príkazu <tt>dvojica</tt></p>
-        <p>Tento typ otázky sa boduje nasledovne. Za každý správne určený pár získaš podiel zo všetkých bodov. V našom príklade sú 4 dvojice dokopy za 20 bodov, to znamená za každú správne určenú dvojicu získaš 5 bodov (lebo 5 bodov krát 4 otázky je 20 bodov).</p>
+        <p>In this question you do not define correct or incorrect answer options - you use <b>pair</b> command to provide correct pairs that belong together. The language mixes them to provide randomness in the question presentation.</p>
+        <p>Points for this question type are awarded as follows. For each correctly paired up pair you get a portion of the points. In our example there are 4 pairs for 20 points together, that means 5 points for each pair.</p>
+
                 
         
       </div>
